@@ -5,13 +5,17 @@ namespace WindowsForm {
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Summary for Form1
-	/// </summary>
+	using namespace System::IO;	// streamreader
+	using namespace System::Globalization;		// cultureinfo
+
+/// <summary>
+/// Summary for Form1
+/// </summary>
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
 	public:
@@ -34,6 +38,18 @@ namespace WindowsForm {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
+
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,12 +64,220 @@ namespace WindowsForm {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Form1";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->SuspendLayout();
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(398, 30);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 0;
+			this->button1->Text = L"Tallózás";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(398, 62);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 1;
+			this->button2->Text = L"Tallózás";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 33);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(129, 17);
+			this->label1->TabIndex = 2;
+			this->label1->Text = L"Páratlan heti forrás";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(12, 65);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(113, 17);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"Páros heti forrás";
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(398, 218);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->TabIndex = 4;
+			this->button3->Text = L"Export";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
+			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(12, 93);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(46, 17);
+			this->label3->TabIndex = 5;
+			this->label3->Text = L"label3";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->ForeColor = System::Drawing::SystemColors::GrayText;
+			this->label4->Location = System::Drawing::Point(165, 33);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(46, 17);
+			this->label4->TabIndex = 6;
+			this->label4->Text = L"label4";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->ForeColor = System::Drawing::SystemColors::GrayText;
+			this->label5->Location = System::Drawing::Point(165, 65);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(46, 17);
+			this->label5->TabIndex = 7;
+			this->label5->Text = L"label5";
+			// 
+			// Form1
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(520, 253);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
+			this->Name = L"Form1";
+			this->Text = L"Form1";
+			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
 		}
 #pragma endregion
-	};
+		ref class Tanora {
+		public:
+			DateTime ^ kezdes, ^ veg;
+			int nap;
+			String ^ nev, ^ terem, ^ oktato, ^ targykod, ^ kurzuskod;
+		};
+		
+		List<Tanora^> ^ paroshet, ^ paratlanhet;
+		DateTime ^ elsonap;
+		CultureInfo ^ provider = gcnew CultureInfo("hu-HU");
+
+		List<Tanora^> ^parseSourceFile(System::Windows::Forms::Label ^pathLabel) {
+			System::Windows::Forms::DialogResult dr;
+			String ^ idoformat = "yyyy.MM.dd. H:mm (dddd)";
+			String ^ sor;
+			//array<Tanora^> ^ oralista = gcnew array<Tanora^>(0);
+			List<Tanora^> ^ oralista = gcnew List<Tanora^>();
+			array<String^> ^ cellak, ^ idok, ^ infok;
+			StreamReader ^ sreader;
+			StreamWriter ^ swriter;
+			array<String^> ^separators = gcnew array<String^>{ " - " };
+			openFileDialog1->FileName = "";
+			openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
+			openFileDialog1->FilterIndex = 1;
+			dr = openFileDialog1->ShowDialog();
+			if (dr == System::Windows::Forms::DialogResult::OK) {
+				sreader = gcnew StreamReader(openFileDialog1->FileName);
+				pathLabel->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
+				swriter = gcnew StreamWriter("debug.txt");
+				while (!sreader->EndOfStream) {
+					sor = sreader->ReadLine();
+					if (sor->Length > 0) {
+						Tanora ^ tan = gcnew Tanora();
+						cellak = sor->Split('\t');
+						// terem
+						tan->terem = cellak[3];
+						// idõk
+						idok = cellak[0]->Split('-');
+						tan->kezdes = DateTime::ParseExact(idok[0]->Trim(' '), idoformat, provider);
+						tan->veg = DateTime::ParseExact(idok[1]->Trim(' '), idoformat, provider);
+						tan->nap = (int)tan->kezdes->DayOfWeek;
+						// egyéb infók
+						// név (tárgykód), kurzuskód, (Változó..) Minden hét (oktató) (terem)
+						infok = cellak[2]->Split(separators, StringSplitOptions::RemoveEmptyEntries);
+						int poz1 = infok[0]->LastIndexOf('(');
+						tan->nev = infok[0]->Substring(0, poz1)->Trim(' ');
+						tan->targykod = infok[0]->Substring(poz1 + 1)->Trim(')');
+						tan->kurzuskod = infok[1];
+						int poz2 = infok[2]->LastIndexOf(" hét ");
+						int poz3 = infok[2]->IndexOf("(", poz2);
+						int poz4 = infok[2]->IndexOf(")", poz2);
+						tan->oktato = infok[2]->Substring(poz3 + 1, poz4 - poz3 - 1);
+
+						swriter->WriteLine(String::Join(", ", tan->nev, tan->targykod, tan->kurzuskod, tan->oktato, tan->terem));
+						oralista->Add(tan);
+					}
+				}
+				sreader->Close();
+				swriter->Close();
+				return oralista;
+			}
+		}
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		paratlanhet = parseSourceFile(label4);
+
+	}
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		paroshet = parseSourceFile(label5);
+	}
+	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
+		label3->Text = "debug";
+		label4->Text = "";
+		label5->Text = "";
+		elsonap = DateTime(2018,9,3);
+	}
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+		StreamWriter ^ swriter;
+		List<Tanora^> ^ akthet;
+		Tanora ^ tan;
+		saveFileDialog1->Filter = "CSV fájlok (*.csv)|*.csv";
+		saveFileDialog1->RestoreDirectory = true;
+		if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+		{
+			swriter = gcnew StreamWriter(saveFileDialog1->FileName);
+			swriter->AutoFlush = true;
+			swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location");
+			for (int het = 0; het < 14; het++) {
+				if (het % 2)
+					akthet = paratlanhet;
+				else
+					akthet = paroshet;
+				for (int i = 0; i < akthet->Count; i++) {
+					tan = akthet[i];
+					DateTime ^datum = elsonap->AddDays(het * 7 + tan->nap - 1);
+					swriter->WriteLine(String::Join(",",
+						tan->nev, datum->ToString("dd.MM.yyyy"), tan->kezdes->ToString("H:mm"), datum->ToString("dd.MM.yyyy"), tan->veg->ToString("H:mm"), tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato, tan->terem));
+				}
+			}
+			label3->Text = "Kész.";
+		}
+	}
+};
 }

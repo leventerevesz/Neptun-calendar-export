@@ -1,0 +1,18 @@
+Szenzortechnika, BMEGEFOAMS1, 18o_E, Dr. Bársony István;Battistig Gábor, KM34
+Hőtan, BMEGEENATMH, 19-1-E-M, Dr. Bihari Péter, KM34
+Végeselem módszer alapjai, BMEGEMMAGMV, E, Dr. Kossa Attila, KF38
+Mikrovezérlők alkalmazása, BMEGEFOAMV1, 18o_E, Szakály Norbert, R108
+Elektromechanika, BMEVIAUA008, 06L18os, Varga Zoltán, QBP106
+Német A2 bemeneti szint (haladó), BMEGT613031, 2_K8Cs8_nhal, Juhász Borbála Anna;Czigány Zsuzsanna, 
+Elektromechanika, BMEVIAUA008, 01E18os, Dr. Hamar János Krisztián, KF51 (AUD.MAX)
+Áramlástan I., BMEGEÁTAM21, 2018o-E, Dr. Suda Jenő Miklós, K150
+Neurális hálók, fuzzy rendszerek, BMEGEGTAM61, 01, Dr. Monostori László, G116
+Mikrovezérlők alkalmazása, BMEGEFOAMV1, 18o_L04, Molnár József;Szakály Norbert, D505
+Finommechanikai építőelemek, BMEGEFOAMF1, 18o_E, Dr. Samu Krisztián, K155
+Szenzortechnika, BMEGEFOAMS1, 18o_L04, Raj Levente, D524
+Német A2 bemeneti szint (haladó), BMEGT613031, 2_K8Cs8_nhal, Juhász Borbála Anna;Czigány Zsuzsanna, 
+Hőtan, BMEGEENATMH, 19-1-G2-M, KF86, KF86
+Irányítástechnika, BMEGEMIAMIT, 18o_E, Dr. Budai Csaba;Dr. Korondi Péter, KM34
+Képfeldolgozás, BMEGEFOAMK1, 18o_E, Dr. Antal Ákos;Dr. Samu Krisztián, D401
+Végeselem módszer alapjai, BMEGEMMAGMV, L13, Zana Roland Reginald, MM_F15
+Irányítástechnika, BMEGEMIAMIT, 18o_G02, Dr. Budai Csaba, KF82
