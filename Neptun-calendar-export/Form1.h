@@ -122,7 +122,7 @@ namespace WindowsForm {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(398, 218);
+			this->button3->Location = System::Drawing::Point(398, 146);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 4;
@@ -137,11 +137,12 @@ namespace WindowsForm {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(12, 126);
+			this->label3->ForeColor = System::Drawing::SystemColors::Highlight;
+			this->label3->Location = System::Drawing::Point(12, 149);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(46, 17);
+			this->label3->Size = System::Drawing::Size(31, 17);
 			this->label3->TabIndex = 5;
-			this->label3->Text = L"label3";
+			this->label3->Text = L"info";
 			// 
 			// label4
 			// 
@@ -196,7 +197,7 @@ namespace WindowsForm {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(520, 253);
+			this->ClientSize = System::Drawing::Size(487, 194);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
@@ -241,6 +242,8 @@ namespace WindowsForm {
 		CultureInfo ^ CIprovider = gcnew CultureInfo("hu-HU");
 
 		List<Tanora^> ^parseSourceFile(System::Windows::Forms::Label ^pathLabel) {
+			// A forrásfájlból csinál egy List<Tanora^> listát.
+
 			System::Windows::Forms::DialogResult dr;
 			String ^ idoformat = "yyyy.MM.dd. H:mm (dddd)";
 			String ^ sor;
@@ -248,7 +251,6 @@ namespace WindowsForm {
 			List<Tanora^> ^ oralista = gcnew List<Tanora^>();
 			array<String^> ^ cellak, ^ idok, ^ infok;
 			StreamReader ^ sreader;
-			StreamWriter ^ swriter;
 			array<String^> ^separators = gcnew array<String^>{ " - " };
 			openFileDialog1->FileName = "";
 			openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
@@ -257,7 +259,6 @@ namespace WindowsForm {
 			if (dr == System::Windows::Forms::DialogResult::OK) {
 				sreader = gcnew StreamReader(openFileDialog1->FileName);
 				pathLabel->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
-				swriter = gcnew StreamWriter("debug.txt");
 				while (!sreader->EndOfStream) {
 					sor = sreader->ReadLine();
 					if (sor->Length > 0) {
@@ -282,15 +283,13 @@ namespace WindowsForm {
 						int poz4 = infok[2]->IndexOf(")", poz2);
 						tan->oktato = infok[2]->Substring(poz3 + 1, poz4 - poz3 - 1);
 
-						swriter->WriteLine(String::Join(", ", tan->nev, tan->targykod, tan->kurzuskod, tan->oktato, tan->terem));
 						oralista->Add(tan);
 					}
 				}
 				sreader->Close();
-				swriter->Close();
 				return oralista;
-
 			}
+			return nullptr;
 		}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		paratlanhet = parseSourceFile(label4);
@@ -303,13 +302,16 @@ namespace WindowsForm {
 			parosforras_megvan = true;
 	}
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
-		label3->Text = "debug";
+		this->Text = "Neptun Calendar Export v1.0";
+		label3->Text = "";
 		label4->Text = "";
 		label5->Text = "";
 		label7->Text = "";
 	}
 
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Az idõszakok fájlt olvassa be.
+
 		System::Windows::Forms::DialogResult dr;
 		StreamReader ^ sreader;
 		String ^ key, ^ value;
@@ -336,6 +338,8 @@ namespace WindowsForm {
 		}
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Export
+
 		StreamWriter ^ swriter;
 		List<Tanora^> ^ akthet;
 		Tanora ^ tan;
