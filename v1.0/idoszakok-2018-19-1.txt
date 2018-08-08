@@ -1,7 +1,7 @@
 # elso nap
 2018-09-03
 # szunet hete
-8
+0
 # munkaszuneti napok
 2018-09-20,2018-10-22,2018-10-23,2018-11-01,2018-11-02,2018-11-30
 # szombati munkanapok
