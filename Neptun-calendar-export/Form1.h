@@ -276,6 +276,8 @@ namespace WindowsForm {
 						infok = cellak[2]->Split(separators, StringSplitOptions::RemoveEmptyEntries);
 						int poz1 = infok[0]->LastIndexOf('(');
 						tan->nev = infok[0]->Substring(0, poz1)->Trim(' ');
+						if (tan->nev->Contains(","))
+							tan->nev = "\"" + tan->nev + "\"";
 						tan->targykod = infok[0]->Substring(poz1 + 1)->Trim(')');
 						tan->kurzuskod = infok[1];
 						int poz2 = infok[2]->LastIndexOf(" hét ");
@@ -351,10 +353,10 @@ namespace WindowsForm {
 			swriter->AutoFlush = true;
 			swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location");
 			for (int het = 0; het < 14; het++) {
-				if (het % 2)
-					akthet = paratlanhet;
-				else
+				if (het % 2 == 1)
 					akthet = paroshet;
+				else
+					akthet = paratlanhet;
 				for (int i = 0; i < akthet->Count; i++) {
 					tan = akthet[i];
 					DateTime ^datum = elsonap->AddDays(het * 7 + tan->nap - 1);

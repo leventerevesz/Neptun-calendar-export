@@ -10,7 +10,6 @@ using namespace WindowsForm;
 
 int main(array<System::String ^> ^args)
 {
-    Console::WriteLine(L"Ablak indul");
 	Application::Run(gcnew Form1());
     return 0;
 }
