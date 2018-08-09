@@ -226,7 +226,7 @@ namespace WindowsForm {
 		ref class DatePair {
 		public:
 			DateTime ^ datum, ^ helyett;
-			DatePair(DateTime ^ _datum, DateTime ^ _helyettesitett) {
+			DatePair(DateTime _datum, DateTime _helyettesitett) {
 				datum = _datum; helyett = _helyettesitett;
 			};
 		};
@@ -291,17 +291,24 @@ namespace WindowsForm {
 				sreader->Close();
 				return oralista;
 			}
-			return nullptr;
+			else {
+				pathLabel->Text = "";
+				return nullptr;
+			}
 		}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		paratlanhet = parseSourceFile(label4);
 		if (paratlanhet != nullptr)
 			paratlanforras_megvan = true;
+		else
+			paratlanforras_megvan = false;
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		paroshet = parseSourceFile(label5);
 		if (paroshet != nullptr)
 			parosforras_megvan = true;
+		else
+			parosforras_megvan = false;
 	}
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
 		this->Text = "Neptun Calendar Export v1.0";
@@ -316,7 +323,7 @@ namespace WindowsForm {
 
 		System::Windows::Forms::DialogResult dr;
 		StreamReader ^ sreader;
-		String ^ key, ^ value;
+		String ^ key, ^ value, ^ sor;
 		Dictionary<String^, String^> ^ idoszakokDict = gcnew Dictionary<String^, String^>();
 		openFileDialog1->FileName = "";
 		openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
@@ -324,19 +331,40 @@ namespace WindowsForm {
 		dr = openFileDialog1->ShowDialog();
 		if (dr == System::Windows::Forms::DialogResult::OK) {
 			sreader = gcnew StreamReader(openFileDialog1->FileName);
+			label7->ForeColor = System::Drawing::SystemColors::GrayText;
 			label7->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
 			while (!sreader->EndOfStream) {
-				key = sreader->ReadLine()->Trim('#', ' ');
-				value = sreader->ReadLine();
-				idoszakokDict->Add(key, value);
+				sor = sreader->ReadLine();
+				if (!sor->StartsWith("//") && sor != "") { // komment és üres sorokat nem olvas
+					key = sor->Trim('#', ' ');
+					value = sreader->ReadLine();
+					idoszakokDict->Add(key, value);
+				}
 			}
 			sreader->Close();
-			elsonap = DateTime::ParseExact(idoszakokDict["elso nap"], "yyyy-MM-dd", CIprovider);
-			szunethete = System::Convert::ToInt32(idoszakokDict["szunet hete"]);
-			array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti napok"]->Split(',');
-			for (int i = 0; i < szunetekStrArr->Length; i++)
-				szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIprovider));
-			idoszakok_megvan = true;
+			try {
+				elsonap = DateTime::ParseExact(idoszakokDict["elso nap"], "yyyy-MM-dd", CIprovider);
+				szunethete = System::Convert::ToInt32(idoszakokDict["szunet hete"]);
+				array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti napok"]->Split(',');
+				for (int i = 0; i < szunetekStrArr->Length; i++)
+					szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIprovider));
+				array<String^> ^ szombatokStrArr = idoszakokDict["szombati munkanapok"]->Split(',');
+				for (int i = 0; i < szombatokStrArr->Length; i++) {
+					array<String^> ^ dpArr = szombatokStrArr[i]->Split('/');
+					DatePair ^ dp = gcnew DatePair(DateTime::ParseExact(dpArr[0], "yyyy-MM-dd", CIprovider),
+						DateTime::ParseExact(dpArr[1], "yyyy-MM-dd", CIprovider));
+					szombatok->Add(dp);
+				}
+				idoszakok_megvan = true;
+			}
+			catch (KeyNotFoundException ^ e1) {
+				label7->ForeColor= System::Drawing::Color::Red;
+				label7->Text = "[!] " + label7->Text;
+			}
+		}
+		else { // Dialógusban MÉGSE
+			label7->Text = "";
+			idoszakok_megvan = false;
 		}
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -345,26 +373,44 @@ namespace WindowsForm {
 		StreamWriter ^ swriter;
 		List<Tanora^> ^ akthet;
 		Tanora ^ tan;
+		System::Windows::Forms::DialogResult dr;
 		saveFileDialog1->Filter = "CSV fájlok (*.csv)|*.csv";
 		saveFileDialog1->RestoreDirectory = true;
-		if ((saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) && idoszakok_megvan && paratlanforras_megvan && parosforras_megvan)
-		{
-			swriter = gcnew StreamWriter(saveFileDialog1->FileName);
-			swriter->AutoFlush = true;
-			swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location");
-			for (int het = 0; het < 14; het++) {
-				if (het % 2 == 1)
-					akthet = paroshet;
-				else
-					akthet = paratlanhet;
-				for (int i = 0; i < akthet->Count; i++) {
-					tan = akthet[i];
-					DateTime ^datum = elsonap->AddDays(het * 7 + tan->nap - 1);
-					if (!szunetek->Contains(DateTime(datum)))
-						swriter->WriteLine(String::Join(",", tan->nev, datum->ToString("dd.MM.yyyy"), tan->kezdes->ToString("H:mm"), datum->ToString("dd.MM.yyyy"), tan->veg->ToString("H:mm"), tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato, tan->terem));
+		if (idoszakok_megvan && paratlanforras_megvan && parosforras_megvan) {
+			dr = saveFileDialog1->ShowDialog();
+			if (dr == System::Windows::Forms::DialogResult::OK)
+			{
+				swriter = gcnew StreamWriter(saveFileDialog1->FileName);
+				swriter->AutoFlush = true;
+				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location");
+				for (int het = 0; het < 14; het++) {
+					if (het % 2 == 1)
+						akthet = paroshet;
+					else
+						akthet = paratlanhet;
+					for (int i = 0; i < akthet->Count; i++) {
+						tan = akthet[i];
+						DateTime ^datum = elsonap->AddDays(het * 7 + tan->nap - 1);
+						if (szunetek->Contains(*datum)) {
+							for (int i = 0; i < szombatok->Count; i++) {
+								if (datum->Equals(szombatok[i]->helyett)) {
+									datum = szombatok[i]->datum;
+									break;
+								}
+							}
+						}
+						String ^ sor = String::Join(",",
+							tan->nev, datum->ToString("dd.MM.yyyy"),
+							tan->kezdes->ToString("H:mm"),
+							datum->ToString("dd.MM.yyyy"),
+							tan->veg->ToString("H:mm"),
+							tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato, tan->terem);
+						if (!szunetek->Contains(*datum))
+							swriter->WriteLine(sor);
+					}
 				}
+				label3->Text = "Kész.";
 			}
-			label3->Text = "Kész.";
 		}
 	}
 
