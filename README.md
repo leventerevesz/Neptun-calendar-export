@@ -15,6 +15,9 @@ Célszerű a Google Calendarba importálni az órarendet, mert
 ## Követelmények
 - Windows 10 (?)
 
+## Letöltés
+[v1.0 letöltése](https://github.com/leventerevesz/Neptun-calendar-export/tree/master/v1.0)
+
 ## Használat
 #### Adatok lementése a Neptunból
 1. A Neptun felület *Órarend* felületét nyisd meg
