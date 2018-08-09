@@ -31,13 +31,21 @@ Célszerű a Google Calendarba importálni az órarendet, mert
 1. Indítsd el a programot
 2. Módosíthatod a forrásfájlokat, de a formátumot őrizd meg (csak konkrét időpontokon, neveken változtass). Új órákat is beszúrhatsz
 3. Tallózd a két forrásfájlt
-4. Tallózd a félév *"időszakok"* fájlját, amit a githubon találsz
+4. Tallózd a félév *"időszakok"* fájlját, amit itt a Letöltés menü alatt találsz
 5. Az "Export" gomb létrehozza az importálható .csv fájlt, add meg a kívánt nevet
 
 #### Google import
 1. Nyisd meg a https://calendar.google.com címen
 2. Beállítások > Naptár felvétele > Új naptár (pl. *4. félév*)
 3. Importálás és exportálás > Importálás > az **új naptárba**.
+
+## Mit tud a program
+- Páros / páratlan hét támogatás
+- Munkaszüneti napok
+- Szombati munkanapok
+- Tavaszi szünet
+
+Mindezt gyorsan és automatikusan.
 
 ## Készítette
 Révész Levente, 2018  
