@@ -384,16 +384,16 @@ namespace WindowsForm {
 				swriter = gcnew StreamWriter(saveFileDialog1->FileName);
 				swriter->AutoFlush = true;
 				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location");
-				for (int het = 0; het < 14; het++) {
+				for (int het = 1; het <= 14; het++) {
 					if (het % 2 == 1)
 						akthet = paroshet;
 					else
 						akthet = paratlanhet;
-					if (het+1 == szunethete) // +1 mert a het 0-val kezdõdik
+					if (het == szunethete) // +1 mert a het 0-val kezdõdik
 						hetOffset = 1;
 					for (int i = 0; i < akthet->Count; i++) {
 						tan = akthet[i];
-						DateTime ^datum = elsonap->AddDays((het+hetOffset) * 7 + tan->nap - 1);
+						DateTime ^datum = elsonap->AddDays((het-1+hetOffset) * 7 + tan->nap - 1);
 						if (szunetek->Contains(*datum)) {
 							for (int i = 0; i < szombatok->Count; i++) {
 								if (datum->Equals(szombatok[i]->helyett)) {
