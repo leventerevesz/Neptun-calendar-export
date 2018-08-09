@@ -373,6 +373,7 @@ namespace WindowsForm {
 		StreamWriter ^ swriter;
 		List<Tanora^> ^ akthet;
 		Tanora ^ tan;
+		int hetOffset = 0;
 		System::Windows::Forms::DialogResult dr;
 		saveFileDialog1->Filter = "CSV fájlok (*.csv)|*.csv";
 		saveFileDialog1->RestoreDirectory = true;
@@ -388,9 +389,11 @@ namespace WindowsForm {
 						akthet = paroshet;
 					else
 						akthet = paratlanhet;
+					if (het+1 == szunethete) // +1 mert a het 0-val kezdõdik
+						hetOffset = 1;
 					for (int i = 0; i < akthet->Count; i++) {
 						tan = akthet[i];
-						DateTime ^datum = elsonap->AddDays(het * 7 + tan->nap - 1);
+						DateTime ^datum = elsonap->AddDays((het+hetOffset) * 7 + tan->nap - 1);
 						if (szunetek->Contains(*datum)) {
 							for (int i = 0; i < szombatok->Count; i++) {
 								if (datum->Equals(szombatok[i]->helyett)) {
