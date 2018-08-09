@@ -34,7 +34,7 @@ Célszerű a Google Calendarba importálni az órarendet, mert
 #### Google import
 1. Nyisd meg a https://calendar.google.com címen
 2. Beállítások > Naptár felvétele > Új naptár (pl. *4. félév*)
-3. Importálás és exportálás > Importálás > az új naptárba.
+3. Importálás és exportálás > Importálás > az **új naptárba**.
 
 ## Készítette
 Révész Levente, 2018  
