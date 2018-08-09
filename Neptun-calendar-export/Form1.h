@@ -335,20 +335,20 @@ namespace WindowsForm {
 			label7->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
 			while (!sreader->EndOfStream) {
 				sor = sreader->ReadLine();
-				if (!sor->StartsWith("//") && sor != "") { // komment és üres sorokat nem olvas
-					key = sor->Trim('#', ' ');
-					value = sreader->ReadLine();
+				if (!sor->StartsWith("#") && sor != "") { // komment és üres sorokat nem olvas
+					key = sor->Split('=')[0]->Trim(' ');
+					value = sor->Split('=')[1]->Trim(' ');
 					idoszakokDict->Add(key, value);
 				}
 			}
 			sreader->Close();
 			try {
-				elsonap = DateTime::ParseExact(idoszakokDict["elso nap"], "yyyy-MM-dd", CIprovider);
-				szunethete = System::Convert::ToInt32(idoszakokDict["szunet hete"]);
-				array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti napok"]->Split(',');
+				elsonap = DateTime::ParseExact(idoszakokDict["elso_nap"], "yyyy-MM-dd", CIprovider);
+				szunethete = System::Convert::ToInt32(idoszakokDict["szunet_hete"]);
+				array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti_napok"]->Split(',');
 				for (int i = 0; i < szunetekStrArr->Length; i++)
 					szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIprovider));
-				array<String^> ^ szombatokStrArr = idoszakokDict["szombati munkanapok"]->Split(',');
+				array<String^> ^ szombatokStrArr = idoszakokDict["szombati_munkanapok"]->Split(',');
 				for (int i = 0; i < szombatokStrArr->Length; i++) {
 					array<String^> ^ dpArr = szombatokStrArr[i]->Split('/');
 					DatePair ^ dp = gcnew DatePair(DateTime::ParseExact(dpArr[0], "yyyy-MM-dd", CIprovider),
@@ -389,7 +389,7 @@ namespace WindowsForm {
 						akthet = paroshet;
 					else
 						akthet = paratlanhet;
-					if (het == szunethete) // +1 mert a het 0-val kezdõdik
+					if (het == szunethete)
 						hetOffset = 1;
 					for (int i = 0; i < akthet->Count; i++) {
 						tan = akthet[i];
