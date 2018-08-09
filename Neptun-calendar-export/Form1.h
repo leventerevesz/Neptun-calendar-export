@@ -283,7 +283,7 @@ namespace WindowsForm {
 						int poz2 = infok[2]->LastIndexOf(" hét ");
 						int poz3 = infok[2]->IndexOf("(", poz2);
 						int poz4 = infok[2]->IndexOf(")", poz2);
-						tan->oktato = infok[2]->Substring(poz3 + 1, poz4 - poz3 - 1);
+						tan->oktato = infok[2]->Substring(poz3 + 1, poz4 - poz3 - 1)->Replace(";",", ")->Replace("  "," ");
 
 						oralista->Add(tan);
 					}
@@ -407,7 +407,8 @@ namespace WindowsForm {
 							tan->kezdes->ToString("H:mm"),
 							datum->ToString("dd.MM.yyyy"),
 							tan->veg->ToString("H:mm"),
-							tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato, tan->terem);
+							"\"" + tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato + "\"", 
+							tan->terem);
 						if (!szunetek->Contains(*datum))
 							swriter->WriteLine(sor);
 					}
