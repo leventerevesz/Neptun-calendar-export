@@ -16,7 +16,7 @@ Célszerű a Google Calendarba importálni az órarendet, mert
 - Windows 10
 
 ## Letöltés
-- [**v1.0 letöltése**](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/Neptun-calendar-export-v1.0.exe)
+- [**Neptun Calendar Export.exe**](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/Neptun%20Calendar%20Export.exe)
 - [**időszakok fájlok** (zip)](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/idoszakok.zip)
 
 ## Használat
