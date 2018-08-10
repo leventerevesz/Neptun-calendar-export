@@ -1,4 +1,4 @@
-# Neptun-calendar-export
+# Neptun Calendar Export
 
 Ez a program a Neptun órarend felületéről egyszerűen kimásolható adatokból készít a Google Calendarba importálható .csv fájlt.
 
@@ -16,8 +16,8 @@ Célszerű a Google Calendarba importálni az órarendet, mert
 - Windows 10
 
 ## Letöltés
-[v1.0 letöltése](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/Neptun-calendar-export-v1.0.exe)
-[*időszakok* fájlok (zip)](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/idoszakok.zip)
+- [**v1.0 letöltése**](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/Neptun-calendar-export-v1.0.exe)
+- [**időszakok fájlok** (zip)](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/idoszakok.zip)
 
 ## Használat
 #### Adatok lementése a Neptunból
