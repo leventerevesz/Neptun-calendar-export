@@ -399,9 +399,9 @@ namespace WindowsForm {
 				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location");
 				for (int het = 1; het <= 14; het++) {
 					if (het % 2 == 1)
-						akthet = paroshet;
-					else
 						akthet = paratlanhet;
+					else
+						akthet = paroshet;
 					if (het == szunethete)
 						hetOffset = 1;
 					for (int i = 0; i < akthet->Count; i++) {
