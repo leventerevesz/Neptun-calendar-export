@@ -52,6 +52,7 @@ namespace WindowsForm {
 	private: System::Windows::Forms::Label^  label6;
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Button^  button4;
+
 	protected:
 
 	private:
@@ -239,19 +240,20 @@ namespace WindowsForm {
 		bool idoszakok_megvan = false;
 		bool paratlanforras_megvan = false;
 		bool parosforras_megvan = false;
-		CultureInfo ^ CIprovider = gcnew CultureInfo("hu-HU");
+		CultureInfo ^ CIproviderHU = gcnew CultureInfo("hu-HU");
 
 		List<Tanora^> ^parseSourceFile(System::Windows::Forms::Label ^pathLabel) {
 			// A forrásfájlból csinál egy List<Tanora^> listát.
 
 			System::Windows::Forms::DialogResult dr;
-			String ^ idoformat = "yyyy.MM.dd. H:mm (dddd)";
+			String ^ idoformat1 = "yyyy.MM.dd. H:mm (dddd)";
+			String ^ idoformat2 = "M/d/yyyy h:mm tt (dddd)";
 			String ^ sor;
 			//array<Tanora^> ^ oralista = gcnew array<Tanora^>(0);
 			List<Tanora^> ^ oralista = gcnew List<Tanora^>();
 			array<String^> ^ cellak, ^ idok, ^ infok;
 			StreamReader ^ sreader;
-			array<String^> ^separators = gcnew array<String^>{ " - " };
+			int poz_targyvege, poz_targykodvege, poz_kurzusvege, poz_oktatoeleje, poz_oktatovege;
 			openFileDialog1->FileName = "";
 			openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
 			openFileDialog1->FilterIndex = 1;
@@ -268,23 +270,34 @@ namespace WindowsForm {
 						tan->terem = cellak[3];
 						// idõk
 						idok = cellak[0]->Split('-');
-						tan->kezdes = DateTime::ParseExact(idok[0]->Trim(' '), idoformat, CIprovider);
-						tan->veg = DateTime::ParseExact(idok[1]->Trim(' '), idoformat, CIprovider);
+						idok[0] = idok[0]->Trim(' ');
+						idok[1] = idok[1]->Trim(' ');
+						if (idok[0]->Contains("/")) {
+							tan->kezdes = DateTime::ParseExact(idok[0]->Replace("AM","DE.")->Replace("PM","DU."), idoformat2, CIproviderHU);
+							tan->veg = DateTime::ParseExact(idok[1]->Replace("AM", "DE.")->Replace("PM", "DU."), idoformat2, CIproviderHU);
+							System::Diagnostics::Debug::WriteLine(tan->kezdes->ToString("yyyy-MM-dd H:mm"));
+						}
+						else {
+							tan->kezdes = DateTime::ParseExact(idok[0], idoformat1, CIproviderHU);
+							tan->veg = DateTime::ParseExact(idok[1], idoformat1, CIproviderHU);							
+						}
 						tan->nap = (int)tan->kezdes->DayOfWeek;
 						// egyéb infók
-						// név (tárgykód), kurzuskód, (Változó..) Minden hét (oktató) (terem)
-						infok = cellak[2]->Split(separators, StringSplitOptions::RemoveEmptyEntries);
-						int poz1 = infok[0]->LastIndexOf('(');
-						tan->nev = infok[0]->Substring(0, poz1)->Trim(' ');
-						if (tan->nev->Contains(","))
-							tan->nev = "\"" + tan->nev + "\"";
-						tan->targykod = infok[0]->Substring(poz1 + 1)->Trim(')');
-						tan->kurzuskod = infok[1];
-						int poz2 = infok[2]->LastIndexOf(" hét ");
-						int poz3 = infok[2]->IndexOf("(", poz2);
-						int poz4 = infok[2]->IndexOf(")", poz2);
-						tan->oktato = infok[2]->Substring(poz3 + 1, poz4 - poz3 - 1)->Replace(";",", ")->Replace("  "," ");
+						// név (tárgykód) - kurzuskód - (Változó..) Minden hét (oktató) (terem)
+						poz_targykodvege = cellak[2]->IndexOf(") - ");
+						poz_targyvege = cellak[2]->LastIndexOf("(", poz_targykodvege, poz_targykodvege-1);
+						poz_kurzusvege = cellak[2]->IndexOf(" - ", poz_targykodvege + 4, 20);
+						poz_oktatoeleje = cellak[2]->IndexOf("hét (", poz_kurzusvege) + 5;
+						poz_oktatovege = cellak[2]->IndexOf(") ", poz_oktatoeleje);
+						tan->nev = cellak[2]->Substring(0, poz_targyvege)->Trim(' ');
+						tan->targykod = cellak[2]->Substring(poz_targyvege + 1, poz_targykodvege - poz_targyvege - 1);
+						tan->kurzuskod = cellak[2]->Substring(poz_targykodvege + 4, poz_kurzusvege - poz_targykodvege - 4);
+						try { tan->oktato = cellak[2]->Substring(poz_oktatoeleje, poz_oktatovege - poz_oktatoeleje)->Replace(";",", "); }
+						catch (...) { tan->oktato = ""; }
 
+						if (tan->nev->Contains(",")) tan->nev = "\"" + tan->nev + "\"";
+
+						//System::Diagnostics::Debug::WriteLine("ora kész");
 						oralista->Add(tan);
 					}
 				}
@@ -343,16 +356,16 @@ namespace WindowsForm {
 			}
 			sreader->Close();
 			try {
-				elsonap = DateTime::ParseExact(idoszakokDict["elso_nap"], "yyyy-MM-dd", CIprovider);
+				elsonap = DateTime::ParseExact(idoszakokDict["elso_nap"], "yyyy-MM-dd", CIproviderHU);
 				szunethete = System::Convert::ToInt32(idoszakokDict["szunet_hete"]);
 				array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti_napok"]->Split(',');
 				for (int i = 0; i < szunetekStrArr->Length; i++)
-					szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIprovider));
+					szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIproviderHU));
 				array<String^> ^ szombatokStrArr = idoszakokDict["szombati_munkanapok"]->Split(',');
 				for (int i = 0; i < szombatokStrArr->Length; i++) {
 					array<String^> ^ dpArr = szombatokStrArr[i]->Split('/');
-					DatePair ^ dp = gcnew DatePair(DateTime::ParseExact(dpArr[0], "yyyy-MM-dd", CIprovider),
-						DateTime::ParseExact(dpArr[1], "yyyy-MM-dd", CIprovider));
+					DatePair ^ dp = gcnew DatePair(DateTime::ParseExact(dpArr[0], "yyyy-MM-dd", CIproviderHU),
+						DateTime::ParseExact(dpArr[1], "yyyy-MM-dd", CIproviderHU));
 					szombatok->Add(dp);
 				}
 				idoszakok_megvan = true;
@@ -417,6 +430,5 @@ namespace WindowsForm {
 			}
 		}
 	}
-
 };
 }
