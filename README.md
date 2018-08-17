@@ -8,16 +8,24 @@ A Neptun rendszer órarend exportáló funkciója nem működik, valamint az ór
 Célszerű a Google Calendarba importálni az órarendet, mert
 - ingyenes
 - jól használható
-- órák alatt tudja némítani az eszközt
+- órák alatt tudja némítani az eszközt [bővebben lejjebb]
 - minden eszközödön szinkronizál
 - könnyen megosztható az órarend
+
+## Mit tud a program
+- Páros / páratlan hét támogatás
+- Munkaszüneti napok
+- Szombati munkanapok
+- Tavaszi szünet
+
+Mindezt gyorsan és automatikusan.
 
 ## Követelmények
 - Windows 10
 
 ## Letöltés
 - [**Neptun Calendar Export.exe**](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/Neptun%20Calendar%20Export.exe)
-- [**időszakok fájlok** (zip)](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/idoszakok.zip)
+- [**időszakok fájlok**](https://github.com/leventerevesz/Neptun-calendar-export/raw/master/Let%C3%B6lt%C3%A9sek/idoszakok.zip) (.zip)
 
 ## Használat
 #### Adatok lementése a Neptunból
@@ -30,7 +38,7 @@ Célszerű a Google Calendarba importálni az órarendet, mert
 
 #### Program használata
 1. Indítsd el a programot
-2. Módosíthatod a forrásfájlokat, de a formátumot őrizd meg (csak konkrét időpontokon, neveken változtass). Új órákat is beszúrhatsz
+2. Módosíthatod a forrásfájlokat, de a formátumot őrizd meg (csak konkrét időpontokon, neveken változtass). Új órákat is beszúrhatsz.  
 3. Tallózd a két forrásfájlt
 4. Tallózd a félév *"időszakok"* fájlját, amit itt a Letöltés menü alatt találsz
 5. Az "Export" gomb létrehozza az importálható .csv fájlt, add meg a kívánt nevet
@@ -40,13 +48,22 @@ Célszerű a Google Calendarba importálni az órarendet, mert
 2. Beállítások > Naptár felvétele > Új naptár (pl. *4. félév*)
 3. Importálás és exportálás > Importálás > az **új naptárba**.
 
-## Mit tud a program
-- Páros / páratlan hét támogatás
-- Munkaszüneti napok
-- Szombati munkanapok
-- Tavaszi szünet
+## Extrák
 
-Mindezt gyorsan és automatikusan.
+#### Órák alatti némítás
+Néhány gyártó (pl. Samsung) naptár alkalmazása tudja ezt a funkciót.  
+Ha a te eszközöd gyárilag nem képes erre, a [Calendar Mute](https://play.google.com/store/apps/details?id=com.PKH.calendarmute&hl=en_US)
+ app pont erre való. Ingyenes és reklámmentes.
+
+#### Óra sablon a forrásfájlba
+*kezdés_idő* - *vég_idő*\<t>Óra\<t>*Tárgy* (*tárgykód*) - *kurzuskód* - Minden hét (*oktatók*)\<t>*terem*
+
+- A \<t> tabulátort jelent.
+- A dőlt betűs szavak helyettesítendők
+- Az összes többi karakternek (szóközöket is beleértve) stimmelnie kell
+- Az időformátum YYYY.MM.DD h:mm (Nap)  
+  - példa: 2018.09.03 8:15 (Hétfő)  
+  - A hónap, nap és perc mindenképp kétjegyű legyen, de az óra ne.
 
 ## Készítette
 Révész Levente, 2018  
