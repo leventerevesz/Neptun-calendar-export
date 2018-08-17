@@ -219,97 +219,120 @@ namespace WindowsForm {
 		}
 #pragma endregion
 		ref class Tanora {
+		// A parse során tárolja az adott tanórához tartozó adatokat, majd az export során ebbõl olvasom ki a tanórák adatait
 		public:
 			DateTime ^ kezdes, ^ veg;
 			int nap;
 			String ^ nev, ^ terem, ^ oktato, ^ targykod, ^ kurzuskod;
 		};
 		ref class DatePair {
+		// Két õsszetartozó dátumot tárol
+		// A szombati munkanapokhoz használom. Kicsit túl van bonyolítva, de maradhat.
 		public:
 			DateTime ^ datum, ^ helyett;
 			DatePair(DateTime _datum, DateTime _helyettesitett) {
 				datum = _datum; helyett = _helyettesitett;
 			};
 		};
+
+		// Forrûsokból nyert adatok
+		List<Tanora^> ^ paroshet, ^ paratlanhet; // Ez a feldolgozott változata a két neptunos táblázatnak
 		
-		List<Tanora^> ^ paroshet, ^ paratlanhet;
+		// Idõszakok fájlból nyert adatok
 		DateTime ^ elsonap;
 		List<DateTime> ^ szunetek = gcnew List<DateTime>();
 		List<DatePair^> ^ szombatok = gcnew List<DatePair^>();
 		int szunethete = 0;
+
+		// Flagek amik jelzik, hogy mehet-e az export gomb
 		bool idoszakok_megvan = false;
 		bool paratlanforras_megvan = false;
 		bool parosforras_megvan = false;
+
+		// magyar kultúrinfó
 		CultureInfo ^ CIproviderHU = gcnew CultureInfo("hu-HU");
 
 		List<Tanora^> ^parseSourceFile(System::Windows::Forms::Label ^pathLabel) {
-			// A forrásfájlból csinál egy List<Tanora^> listát.
+			// A forrásfájlból csinál egy List<Tanora^> listát. Egy Labelbe kiírja mit válaszottunk.
+			//
+			//	pathLabel: a Tallózás gomb melletti Label
 
 			System::Windows::Forms::DialogResult dr;
+			// A Neptun kétféle idõformátum közt váltogat
 			String ^ idoformat1 = "yyyy.MM.dd. H:mm (dddd)";
 			String ^ idoformat2 = "M/d/yyyy h:mm tt (dddd)";
-			String ^ sor;
-			//array<Tanora^> ^ oralista = gcnew array<Tanora^>(0);
+			// Az oralista lesz a visszaadott érték, az egy hétnyi órarend
 			List<Tanora^> ^ oralista = gcnew List<Tanora^>();
+			// változók a daraboláshoz
 			array<String^> ^ cellak, ^ idok, ^ infok;
-			StreamReader ^ sreader;
+			String ^ sor;
 			int poz_targyvege, poz_targykodvege, poz_kurzusvege, poz_oktatoeleje, poz_oktatovege;
+			//
+			StreamReader ^ sreader;
+			// Dialog init
 			openFileDialog1->FileName = "";
 			openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
 			openFileDialog1->FilterIndex = 1;
 			dr = openFileDialog1->ShowDialog();
-			if (dr == System::Windows::Forms::DialogResult::OK) {
+			if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fájl kiválasztva
 				sreader = gcnew StreamReader(openFileDialog1->FileName);
 				pathLabel->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
 				while (!sreader->EndOfStream) {
 					sor = sreader->ReadLine();
 					if (sor->Length > 0) {
-						Tanora ^ tan = gcnew Tanora();
-						cellak = sor->Split('\t');
-						// terem
+						Tanora ^ tan = gcnew Tanora();	// ide gyûjtünk adatokat
+						cellak = sor->Split('\t');	// négy cella: idõk, "Óra", egyéb infók, terem 
+						
+						// TEREM
 						tan->terem = cellak[3];
-						// idõk
+						
+						// IDÕK
 						idok = cellak[0]->Split('-');
 						idok[0] = idok[0]->Trim(' ');
 						idok[1] = idok[1]->Trim(' ');
-						if (idok[0]->Contains("/")) {
+						if (idok[0]->Contains("/")) {	// Ha az idõk US formátumúak
 							tan->kezdes = DateTime::ParseExact(idok[0]->Replace("AM","DE.")->Replace("PM","DU."), idoformat2, CIproviderHU);
 							tan->veg = DateTime::ParseExact(idok[1]->Replace("AM", "DE.")->Replace("PM", "DU."), idoformat2, CIproviderHU);
-							System::Diagnostics::Debug::WriteLine(tan->kezdes->ToString("yyyy-MM-dd H:mm"));
 						}
-						else {
+						else {	// Ha az idõk magyar formátumúak
 							tan->kezdes = DateTime::ParseExact(idok[0], idoformat1, CIproviderHU);
 							tan->veg = DateTime::ParseExact(idok[1], idoformat1, CIproviderHU);							
 						}
-						tan->nap = (int)tan->kezdes->DayOfWeek;
-						// egyéb infók
+						tan->nap = (int)tan->kezdes->DayOfWeek;	// hét napja számként, 1 = hétfõ
+						
+						// EGYÉB INFÓK
 						// név (tárgykód) - kurzuskód - (Változó..) Minden hét (oktató) (terem)
+						// fontos indexek:
 						poz_targykodvege = cellak[2]->IndexOf(") - ");
 						poz_targyvege = cellak[2]->LastIndexOf("(", poz_targykodvege, poz_targykodvege-1);
 						poz_kurzusvege = cellak[2]->IndexOf(" - ", poz_targykodvege + 4, 20);
 						poz_oktatoeleje = cellak[2]->IndexOf("hét (", poz_kurzusvege) + 5;
 						poz_oktatovege = cellak[2]->IndexOf(") ", poz_oktatoeleje);
+						// indexek szerint darabolás
 						tan->nev = cellak[2]->Substring(0, poz_targyvege)->Trim(' ');
 						tan->targykod = cellak[2]->Substring(poz_targyvege + 1, poz_targykodvege - poz_targyvege - 1);
 						tan->kurzuskod = cellak[2]->Substring(poz_targykodvege + 4, poz_kurzusvege - poz_targykodvege - 4);
 						try { tan->oktato = cellak[2]->Substring(poz_oktatoeleje, poz_oktatovege - poz_oktatoeleje)->Replace(";",", "); }
-						catch (...) { tan->oktato = ""; }
+						catch (...) { tan->oktato = ""; }	// oktató nem mindig van
+						// Néha az oktató helyére a terem kerül (a Neptuntáblázat miatt), de ez nem zavaró
 
+						// Ha a tárgy nevében van vesszõ, azt a csv formátum miatt kommentelni kell
 						if (tan->nev->Contains(",")) tan->nev = "\"" + tan->nev + "\"";
 
 						//System::Diagnostics::Debug::WriteLine("ora kész");
 						oralista->Add(tan);
 					}
-				}
+				} // fájl vége
 				sreader->Close();
 				return oralista;
 			}
-			else {
+			else {	// Ha nincs fájl kiválasztva
 				pathLabel->Text = "";
 				return nullptr;
 			}
 		}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Páratlan heti forrásfájl gomb
 		paratlanhet = parseSourceFile(label4);
 		if (paratlanhet != nullptr)
 			paratlanforras_megvan = true;
@@ -317,6 +340,7 @@ namespace WindowsForm {
 			paratlanforras_megvan = false;
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Páros heti forrásfájl gomb
 		paroshet = parseSourceFile(label5);
 		if (paroshet != nullptr)
 			parosforras_megvan = true;
@@ -332,19 +356,27 @@ namespace WindowsForm {
 	}
 
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Az idõszakok fájlt olvassa be.
+		// Az idõszakok fájlt olvassa be, beállítja a hozzá tartozó változókat
 
-		System::Windows::Forms::DialogResult dr;
+		// A fájl key = value formátumú, a komment sorok #-vel jelöltek.
+		// Újabb értékekkel gond nélkül bõvíthetõ.
+
 		StreamReader ^ sreader;
 		String ^ key, ^ value, ^ sor;
+		
+		// key-value párok tárolására
 		Dictionary<String^, String^> ^ idoszakokDict = gcnew Dictionary<String^, String^>();
+		
+		// Dialógus init
+		System::Windows::Forms::DialogResult dr;
 		openFileDialog1->FileName = "";
 		openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
 		openFileDialog1->FilterIndex = 1;
 		dr = openFileDialog1->ShowDialog();
-		if (dr == System::Windows::Forms::DialogResult::OK) {
+		if (dr == System::Windows::Forms::DialogResult::OK) { // ha megvan a fájl
+			// BEOLVASÁS
 			sreader = gcnew StreamReader(openFileDialog1->FileName);
-			label7->ForeColor = System::Drawing::SystemColors::GrayText;
+			label7->ForeColor = System::Drawing::SystemColors::GrayText; // hiba esetén piros volt
 			label7->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
 			while (!sreader->EndOfStream) {
 				sor = sreader->ReadLine();
@@ -353,14 +385,17 @@ namespace WindowsForm {
 					value = sor->Split('=')[1]->Trim(' ');
 					idoszakokDict->Add(key, value);
 				}
-			}
+			} // fájl vége
 			sreader->Close();
+			// FELDOLGOZÁS
 			try {
 				elsonap = DateTime::ParseExact(idoszakokDict["elso_nap"], "yyyy-MM-dd", CIproviderHU);
 				szunethete = System::Convert::ToInt32(idoszakokDict["szunet_hete"]);
+				// szünetek
 				array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti_napok"]->Split(',');
 				for (int i = 0; i < szunetekStrArr->Length; i++)
 					szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIproviderHU));
+				// szombatok
 				array<String^> ^ szombatokStrArr = idoszakokDict["szombati_munkanapok"]->Split(',');
 				for (int i = 0; i < szombatokStrArr->Length; i++) {
 					array<String^> ^ dpArr = szombatokStrArr[i]->Split('/');
@@ -372,7 +407,8 @@ namespace WindowsForm {
 			}
 			catch (KeyNotFoundException ^ e1) {
 				label7->ForeColor= System::Drawing::Color::Red;
-				label7->Text = "[!] " + label7->Text;
+				label7->Text = "[Hiba] " + label7->Text;
+				idoszakok_megvan = false;
 			}
 		}
 		else { // Dialógusban MÉGSE
@@ -381,50 +417,53 @@ namespace WindowsForm {
 		}
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Export
+		// CSV Export
 
 		StreamWriter ^ swriter;
-		List<Tanora^> ^ akthet;
+		List<Tanora^> ^ akthet; // a paroshet vagy a paratlanhet listára mutat
 		Tanora ^ tan;
-		int hetOffset = 0;
-		System::Windows::Forms::DialogResult dr;
+		int hetOffset = 0; // a tavaszi szünethez kell
+
+		// Dialog init
 		saveFileDialog1->Filter = "CSV fájlok (*.csv)|*.csv";
 		saveFileDialog1->RestoreDirectory = true;
+		System::Windows::Forms::DialogResult dr;
 		if (idoszakok_megvan && paratlanforras_megvan && parosforras_megvan) {
 			dr = saveFileDialog1->ShowDialog();
-			if (dr == System::Windows::Forms::DialogResult::OK)
-			{
+			if (dr == System::Windows::Forms::DialogResult::OK) { // fájl kiválasztva
 				swriter = gcnew StreamWriter(saveFileDialog1->FileName);
-				swriter->AutoFlush = true;
-				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location");
+				swriter->AutoFlush = true; // Enélkül random megáll az írással
+				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location"); // header
 				for (int het = 1; het <= 14; het++) {
-					if (het % 2 == 1)
+					if (het % 2 == 1) // páros/páratlan hét
 						akthet = paratlanhet;
 					else
 						akthet = paroshet;
 					if (het == szunethete)
 						hetOffset = 1;
 					for (int i = 0; i < akthet->Count; i++) {
-						tan = akthet[i];
-						DateTime ^datum = elsonap->AddDays((het-1+hetOffset) * 7 + tan->nap - 1);
-						if (szunetek->Contains(*datum)) {
-							for (int i = 0; i < szombatok->Count; i++) {
+						tan = akthet[i]; // Tanóra ^ tan
+						DateTime ^ datum = elsonap->AddDays((het-1+hetOffset) * 7 + tan->nap - 1);
+						if (szunetek->Contains(*datum)) { // Ha az adott nap szünet
+							for (int i = 0; i < szombatok->Count; i++) { // Ha van szombati pótlása, rakja át az órát oda
 								if (datum->Equals(szombatok[i]->helyett)) {
 									datum = szombatok[i]->datum;
 									break;
 								}
 							}
 						}
+						// írás
 						String ^ sor = String::Join(",",
-							tan->nev, datum->ToString("dd.MM.yyyy"),
+							tan->nev,
+							datum->ToString("dd.MM.yyyy"),
 							tan->kezdes->ToString("H:mm"),
 							datum->ToString("dd.MM.yyyy"),
 							tan->veg->ToString("H:mm"),
 							"\"" + tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato + "\"", 
 							tan->terem);
-						if (!szunetek->Contains(*datum))
+						if (!szunetek->Contains(*datum)) // Ha a nap nem szünet, akkor írja
 							swriter->WriteLine(sor);
-					}
+					} // óra (rekord) kész
 				}
 				label3->Text = "Kész.";
 			}
