@@ -24,6 +24,7 @@ Mindezt gyorsan és automatikusan.
 Követelmények
 -------------
 - Windows 10
+- Chrome / Firefox / Opera / Safari
 
 Letöltés
 --------
