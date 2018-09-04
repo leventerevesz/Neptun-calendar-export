@@ -29,7 +29,7 @@ Mindezt gyorsan és automatikusan.
 
 ## Használat
 #### Adatok lementése a Neptunból
-1. A Neptun felület *Órarend* felületét nyisd meg
+1. A Neptun rendszer *Órarend* felületét nyisd meg
 2. Válaszd a *"Heti nézetet"*
 3. Jelölj ki egy "páratlan hetet"
 4. A kék kereten, jobb felül nyomj rá a *"Listás nyomtatás"* gombra
@@ -40,7 +40,7 @@ Mindezt gyorsan és automatikusan.
 1. Indítsd el a programot
 2. Módosíthatod a forrásfájlokat, de a formátumot őrizd meg (csak konkrét időpontokon, neveken változtass). Új órákat is beszúrhatsz.  
 3. Tallózd a két forrásfájlt
-4. Tallózd a félév *"időszakok"* fájlját, amit itt a Letöltés menü alatt találsz
+4. Tallózd a félév *"időszakok"* fájlját, amit itt a Letöltés pont alatt találsz
 5. Az "Export" gomb létrehozza az importálható .csv fájlt, add meg a kívánt nevet
 
 #### Google import
@@ -65,6 +65,10 @@ Ha a te eszközöd gyárilag nem képes erre, a [Calendar Mute](https://play.goo
   - példa: 2018.09.03 8:15 (Hétfő)  
   - A hónap, nap és perc mindenképp kétjegyű legyen, de az óra ne.
 
-## Készítette
-Révész Levente, 2018  
+## Névjegy
+Révész Levente  
+2018
+
+Visszajelzés: levente.revesz@gmail.com
+
 Special Thanks to JOE & TP
