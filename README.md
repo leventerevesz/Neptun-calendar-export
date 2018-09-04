@@ -4,7 +4,7 @@ Ez a program a Neptun órarend felületéről egyszerűen kimásolható adatokb�
 
 Motiváció
 ---------
-A Neptun rendszer órarend exportáló funkciója nem működik, valamint az órák adatai a valóságban gyakran különböznek a Neptunban szereplőktől.
+A Neptun rendszer órarend exportáló funkciója nem mindig működik, valamint az órák adatai a valóságban gyakran különböznek a Neptunban szereplőktől.
 
 Célszerű a Google Calendarba importálni az órarendet, mert
 - ingyenes
