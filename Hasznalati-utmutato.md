@@ -24,6 +24,7 @@ Fejezetek
 --------------------
 ### 2.1 Tallózd az elkészült fájlokat, valamint a programhoz mellékelt időszakok fájlt  
 Ha nem találsz megfelelő időszakok fájlt, írj nekem egy e-mailt.
+
 ![hasznalat-2.1][h2.1]
 
 3\. Google Calendar import
@@ -39,6 +40,7 @@ Ha nem találsz megfelelő időszakok fájlt, írj nekem egy e-mailt.
 
 ### 3.4 Kattints az Importálásra, tallózd a fájlt, majd **válaszd ki az új naptárat**, végül kattints az importálásra  
 *Ha nem az új naptárba importálsz, nehezen tudod majd törölni az importált órákat!*
+
 ![hasznalat-3.4][h3.4]
 
 
