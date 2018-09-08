@@ -19,7 +19,12 @@ Mit tud a program
 - Szombati munkanapok
 - Tavaszi szünet
 
-Mindezt gyorsan és automatikusan.
+A webcalhoz képest ez az órarend
+- Szerkeszthető: órák törölhetők, hozzáadhatók, módosíthatók
+- Tartalmazza a szüneteket
+- Tartalmazza a szombati munkanapokat
+
+Időigény: nagyjából 3 perc + a szerkesztés ideje
 
 Követelmények
 -------------
