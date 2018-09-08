@@ -33,6 +33,8 @@ Letöltés
 
 Használat
 ---------
+[Gyors használati útmutató képekkel](Hasznalati-utmutato.md)
+
 #### Adatok lementése a Neptunból
 1. A Neptun rendszer *Órarend* felületét nyisd meg
 2. Válaszd a *"Heti nézetet"*
