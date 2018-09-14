@@ -16,6 +16,8 @@ Fejezetek
 ![hasznalat-1.2][h1.2]
 
 ### 1.3 Nyisd meg a jegyzettömböt, másold be a vágólap tartalmát, majd módosítsd az órák címét, dátumát tetszés szerint.
+A mentés ablakban a kódolást **UTF-8**-ra állítsd!
+
 ![hasznalat-1.3][h1.3]
 
 ### 1.4 Ismételd meg az 1.1-1.3 pontokat egy páros hétre is
