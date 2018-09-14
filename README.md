@@ -45,13 +45,14 @@ Használat
 2. Válaszd a *"Heti nézetet"*
 3. Jelölj ki egy "páratlan hetet"
 4. A kék kereten, jobb felül nyomj rá a *"Listás nyomtatás"* gombra
-5. Jelöld ki az egérrel az **egész** táblázatot **fejléc nélkül**, majd másold ki és mentsd egy .txt fájlba.  Pl. *szemeszter4-páratlan.txt*
-6. Végezd el az eddigieket egy 'páros hétre' is
+5. Jelöld ki az egérrel az **egész** táblázatot **fejléc nélkül**, majd másold ki és mentsd egy .txt fájlba.  Pl. *szemeszter4-páratlan.txt*  
+Jegyzettömb használatakor mentésnél a kódolást UTF-8-ra állítsd!
+6. Végezd el az eddigieket egy 'páros hétre' is. Ha nincs páros/páratlan hét közti különbség, ezt a lépést kihagyhatod.
 
 #### Program használata
 1. Indítsd el a programot
 2. Módosíthatod a forrásfájlokat, de a formátumot őrizd meg (csak konkrét időpontokon, neveken változtass). Új órákat is beszúrhatsz. Ha másik napra akarsz átrakni egy órát, a dátumot írd át az adott hét másik napjára. 
-3. Tallózd a két forrásfájlt
+3. Tallózd a két forrásfájlt. Ha csak 1 van, használd azt mindkét helyre.
 4. Tallózd a félév *"időszakok"* fájlját, amit itt a Letöltés pont alatt találsz
 5. Az "Export" gomb létrehozza az importálható .csv fájlt, add meg a kívánt nevet
 
