@@ -235,7 +235,10 @@ namespace WindowsForm {
 			};
 		};
 
-		// Forrûsokból nyert adatok
+		// Forrásfájlok elérési helyei
+		String ^paratlanhet_filename, ^paroshet_filename;
+
+		// Forrásokból nyert adatok
 		List<Tanora^> ^ paroshet, ^ paratlanhet; // Ez a feldolgozott változata a két neptunos táblázatnak
 		
 		// Idõszakok fájlból nyert adatok
@@ -252,12 +255,11 @@ namespace WindowsForm {
 		// magyar kultúrinfó
 		CultureInfo ^ CIproviderHU = gcnew CultureInfo("hu-HU");
 
-		List<Tanora^> ^parseSourceFile(System::Windows::Forms::Label ^pathLabel) {
+		List<Tanora^> ^parseSourceFile(String ^filename) {
 			// A forrásfájlból csinál egy List<Tanora^> listát. Egy Labelbe kiírja mit válaszottunk.
 			//
-			//	pathLabel: a Tallózás gomb melletti Label
+			//	filename: a kiválasztott fájl teljes elérési útja
 
-			System::Windows::Forms::DialogResult dr;
 			// A Neptun kétféle idõformátum közt váltogat
 			String ^ idoformat1 = "yyyy.MM.dd. H:mm (dddd)";
 			String ^ idoformat2 = "M/d/yyyy h:mm tt (dddd)";
@@ -270,13 +272,8 @@ namespace WindowsForm {
 			//
 			StreamReader ^ sreader;
 			// Dialog init
-			openFileDialog1->FileName = "";
-			openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
-			openFileDialog1->FilterIndex = 1;
-			dr = openFileDialog1->ShowDialog();
-			if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fájl kiválasztva
-				sreader = gcnew StreamReader(openFileDialog1->FileName);
-				pathLabel->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
+			
+				sreader = gcnew StreamReader(filename);
 				while (!sreader->EndOfStream) {
 					sor = sreader->ReadLine();
 					if (sor->Length > 0) {
@@ -325,27 +322,30 @@ namespace WindowsForm {
 				} // fájl vége
 				sreader->Close();
 				return oralista;
-			}
-			else {	// Ha nincs fájl kiválasztva
-				pathLabel->Text = "";
-				return nullptr;
-			}
 		}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Páratlan heti forrásfájl gomb
-		paratlanhet = parseSourceFile(label4);
-		if (paratlanhet != nullptr)
-			paratlanforras_megvan = true;
-		else
-			paratlanforras_megvan = false;
+		// Páratlan heti forrásfájl gomb, beállítja a fájl elérési útját
+		System::Windows::Forms::DialogResult dr;
+		openFileDialog1->FileName = "";
+		openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
+		openFileDialog1->FilterIndex = 1;
+		dr = openFileDialog1->ShowDialog();
+		if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fájl kiválasztva
+			paratlanhet_filename = openFileDialog1->FileName;
+			label4->Text = System::IO::Path::GetFileName(paratlanhet_filename);
+		}
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Páros heti forrásfájl gomb
-		paroshet = parseSourceFile(label5);
-		if (paroshet != nullptr)
-			parosforras_megvan = true;
-		else
-			parosforras_megvan = false;
+		// Páros heti forrásfájl gomb, beállítja a fájl elérési útját
+		System::Windows::Forms::DialogResult dr;
+		openFileDialog1->FileName = "";
+		openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
+		openFileDialog1->FilterIndex = 1;
+		dr = openFileDialog1->ShowDialog();
+		if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fájl kiválasztva
+			paroshet_filename = openFileDialog1->FileName;
+			label5->Text = System::IO::Path::GetFileName(paroshet_filename);
+		}
 	}
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
 		this->Text = "Neptun Calendar Export v1.0";
@@ -417,8 +417,25 @@ namespace WindowsForm {
 		}
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Páratlan heti forrásfájl beolvasása
+		if (label4->Text != "") paratlanhet = parseSourceFile(paratlanhet_filename);
+		if (paratlanhet != nullptr)	paratlanforras_megvan = true;
+		else {
+			paratlanforras_megvan = false;
+			label3->Text = "Nem találom a páratlan heti forrást.";
+		}
+		// Páros heti forrásfájl beolvasása
+		if (label5->Text != "") paroshet = parseSourceFile(paroshet_filename);
+		if (paroshet != nullptr) parosforras_megvan = true;
+		else {
+			parosforras_megvan = false;
+			label3->Text = "Nem találom a páros heti forrást.";
+		}
+		if (!(parosforras_megvan || paratlanforras_megvan)) { // mindkettõ hiányzik
+			label3->Text = "Nem találom a forrásfájlokat.";
+		}
+		
 		// CSV Export
-
 		StreamWriter ^ swriter;
 		List<Tanora^> ^ akthet; // a paroshet vagy a paratlanhet listára mutat
 		Tanora ^ tan;
