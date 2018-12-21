@@ -14,7 +14,7 @@ namespace WindowsForm {
 	using namespace System::Globalization;		// cultureinfo
 
 /// <summary>
-/// Summary for Form1
+/// Az alkalmazï¿½s fï¿½ ablaka.
 /// </summary>
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
@@ -84,77 +84,77 @@ namespace WindowsForm {
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
-			// 
+			//
 			// button1
-			// 
+			//
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button1->Location = System::Drawing::Point(398, 30);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 0;
-			this->button1->Text = L"Tallózás";
+			this->button1->Text = L"Tallï¿½zï¿½s";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
-			// 
+			//
 			// button2
-			// 
+			//
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button2->Location = System::Drawing::Point(398, 62);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 1;
-			this->button2->Text = L"Tallózás";
+			this->button2->Text = L"Tallï¿½zï¿½s";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
-			// 
+			//
 			// label1
-			// 
+			//
 			this->label1->AutoSize = true;
 			this->label1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label1->Location = System::Drawing::Point(12, 33);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(129, 17);
 			this->label1->TabIndex = 2;
-			this->label1->Text = L"Páratlan heti forrás";
-			// 
+			this->label1->Text = L"Pï¿½ratlan heti forrï¿½s";
+			//
 			// label2
-			// 
+			//
 			this->label2->AutoSize = true;
 			this->label2->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label2->Location = System::Drawing::Point(12, 65);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(113, 17);
 			this->label2->TabIndex = 3;
-			this->label2->Text = L"Páros heti forrás";
-			// 
+			this->label2->Text = L"Pï¿½ros heti forrï¿½s";
+			//
 			// button3
-			// 
+			//
 			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->button3->Location = System::Drawing::Point(398, 162);
+			this->button3->Location = System::Drawing::Point(398, 169);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 4;
 			this->button3->Text = L"Export";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
-			// 
+			//
 			// openFileDialog1
-			// 
+			//
 			this->openFileDialog1->FileName = L"openFileDialog1";
-			// 
+			//
 			// label3
-			// 
+			//
 			this->label3->AutoSize = true;
 			this->label3->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label3->ForeColor = System::Drawing::SystemColors::Highlight;
-			this->label3->Location = System::Drawing::Point(12, 165);
+			this->label3->Location = System::Drawing::Point(12, 172);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(31, 17);
 			this->label3->TabIndex = 5;
 			this->label3->Text = L"info";
-			// 
+			//
 			// label4
-			// 
+			//
 			this->label4->AutoSize = true;
 			this->label4->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label4->ForeColor = System::Drawing::SystemColors::GrayText;
@@ -163,9 +163,9 @@ namespace WindowsForm {
 			this->label4->Size = System::Drawing::Size(46, 17);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"label4";
-			// 
+			//
 			// label5
-			// 
+			//
 			this->label5->AutoSize = true;
 			this->label5->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label5->ForeColor = System::Drawing::SystemColors::GrayText;
@@ -174,19 +174,19 @@ namespace WindowsForm {
 			this->label5->Size = System::Drawing::Size(46, 17);
 			this->label5->TabIndex = 7;
 			this->label5->Text = L"label5";
-			// 
+			//
 			// label6
-			// 
+			//
 			this->label6->AutoSize = true;
 			this->label6->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label6->Location = System::Drawing::Point(12, 96);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(114, 17);
 			this->label6->TabIndex = 8;
-			this->label6->Text = L"Félévi adatok fájl";
-			// 
+			this->label6->Text = L"Fï¿½lï¿½vi adatok fï¿½jl";
+			//
 			// label7
-			// 
+			//
 			this->label7->AutoSize = true;
 			this->label7->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label7->ForeColor = System::Drawing::SystemColors::GrayText;
@@ -195,36 +195,36 @@ namespace WindowsForm {
 			this->label7->Size = System::Drawing::Size(46, 17);
 			this->label7->TabIndex = 9;
 			this->label7->Text = L"label7";
-			// 
+			//
 			// button4
-			// 
+			//
 			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button4->Location = System::Drawing::Point(398, 93);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 10;
-			this->button4->Text = L"Tallózás";
+			this->button4->Text = L"Tallï¿½zï¿½s";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
-			// 
+			//
 			// checkBox1
-			// 
+			//
 			this->checkBox1->AutoSize = true;
 			this->checkBox1->Checked = true;
 			this->checkBox1->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->checkBox1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->checkBox1->Location = System::Drawing::Point(12, 126);
+			this->checkBox1->Location = System::Drawing::Point(15, 132);
 			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(259, 22);
+			this->checkBox1->Size = System::Drawing::Size(186, 22);
 			this->checkBox1->TabIndex = 11;
-			this->checkBox1->Text = L"Mutassa a hét számát eseményként";
+			this->checkBox1->Text = L"Jelezze a hï¿½t sorszï¿½mï¿½t";
 			this->checkBox1->UseVisualStyleBackColor = true;
-			// 
+			//
 			// Form1
-			// 
+			//
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(487, 194);
+			this->ClientSize = System::Drawing::Size(487, 204);
 			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->label7);
@@ -246,15 +246,15 @@ namespace WindowsForm {
 		}
 #pragma endregion
 		ref class Tanora {
-		// A parse során tárolja az adott tanórához tartozó adatokat, majd az export során ebbõl olvasom ki a tanórák adatait
+		// A parse sorï¿½n tï¿½rolja az adott tanï¿½rï¿½hoz tartozï¿½ adatokat, majd az export sorï¿½n ebbï¿½l olvasom ki a tanï¿½rï¿½k adatait
 		public:
 			DateTime ^ kezdes, ^ veg;
 			int nap;
 			String ^ nev, ^ terem, ^ oktato, ^ targykod, ^ kurzuskod;
 		};
 		ref class DatePair {
-		// Két õsszetartozó dátumot tárol
-		// A szombati munkanapokhoz használom. Kicsit túl van bonyolítva, de maradhat.
+		// Kï¿½t ï¿½sszetartozï¿½ dï¿½tumot tï¿½rol
+		// A szombati munkanapokhoz hasznï¿½lom. Kicsit tï¿½l van bonyolï¿½tva, de maradhat.
 		public:
 			DateTime ^ datum, ^ helyett;
 			DatePair(DateTime _datum, DateTime _helyettesitett) {
@@ -262,13 +262,13 @@ namespace WindowsForm {
 			};
 		};
 
-		// Forrásfájlok elérési helyei
+		// Forrï¿½sfï¿½jlok elï¿½rï¿½si helyei
 		String ^paratlanhet_filename, ^paroshet_filename;
 
-		// Forrásokból nyert adatok
-		List<Tanora^> ^ paroshet, ^ paratlanhet; // Ez a feldolgozott változata a két neptunos táblázatnak
-		
-		// Idõszakok fájlból nyert adatok
+		// Forrï¿½sokbï¿½l nyert adatok
+		List<Tanora^> ^ paroshet, ^ paratlanhet; // Ez a feldolgozott vï¿½ltozata a kï¿½t neptunos tï¿½blï¿½zatnak
+
+		// Idï¿½szakok fï¿½jlbï¿½l nyert adatok
 		DateTime ^ elsonap;
 		List<DateTime> ^ szunetek = gcnew List<DateTime>();
 		List<DatePair^> ^ szombatok = gcnew List<DatePair^>();
@@ -279,97 +279,97 @@ namespace WindowsForm {
 		bool paratlanforras_megvan = false;
 		bool parosforras_megvan = false;
 
-		// magyar kultúrinfó
+		// magyar kultï¿½rinfï¿½
 		CultureInfo ^ CIproviderHU = gcnew CultureInfo("hu-HU");
 
 		List<Tanora^> ^parseSourceFile(String ^filename) {
-			// A forrásfájlból csinál egy List<Tanora^> listát. Egy Labelbe kiírja mit válaszottunk.
+			// A forrï¿½sfï¿½jlbï¿½l csinï¿½l egy List<Tanora^> listï¿½t. Egy Labelbe kiï¿½rja mit vï¿½laszottunk.
 			//
-			//	filename: a kiválasztott fájl teljes elérési útja
+			//	filename: a kivï¿½lasztott fï¿½jl teljes elï¿½rï¿½si ï¿½tja
 
-			// A Neptun kétféle idõformátum közt váltogat
+			// A Neptun kï¿½tfï¿½le idï¿½formï¿½tum kï¿½zt vï¿½ltogat
 			String ^ idoformat1 = "yyyy.MM.dd. H:mm (dddd)";
 			String ^ idoformat2 = "M/d/yyyy h:mm tt (dddd)";
-			// Az oralista lesz a visszaadott érték, az egy hétnyi órarend
+			// Az oralista lesz a visszaadott ï¿½rtï¿½k, az egy hï¿½tnyi ï¿½rarend
 			List<Tanora^> ^ oralista = gcnew List<Tanora^>();
-			// változók a daraboláshoz
+			// vï¿½ltozï¿½k a darabolï¿½shoz
 			array<String^> ^ cellak, ^ idok, ^ infok;
 			String ^ sor;
 			int poz_targyvege, poz_targykodvege, poz_kurzusvege, poz_oktatoeleje, poz_oktatovege;
 			//
 			StreamReader ^ sreader;
 			// Dialog init
-			
+
 				sreader = gcnew StreamReader(filename);
 				while (!sreader->EndOfStream) {
 					sor = sreader->ReadLine();
 					if (sor->Length > 0) {
-						Tanora ^ tan = gcnew Tanora();	// ide gyûjtünk adatokat
-						cellak = sor->Split('\t');	// négy cella: idõk, "Óra", egyéb infók, terem 
-						
+						Tanora ^ tan = gcnew Tanora();	// ide gyï¿½jtï¿½nk adatokat
+						cellak = sor->Split('\t');	// nï¿½gy cella: idï¿½k, "ï¿½ra", egyï¿½b infï¿½k, terem
+
 						// TEREM
 						tan->terem = cellak[3];
-						
-						// IDÕK
+
+						// IDï¿½K
 						idok = cellak[0]->Split('-');
 						idok[0] = idok[0]->Trim(' ');
 						idok[1] = idok[1]->Trim(' ');
-						if (idok[0]->Contains("/")) {	// Ha az idõk US formátumúak
+						if (idok[0]->Contains("/")) {	// Ha az idï¿½k US formï¿½tumï¿½ak
 							tan->kezdes = DateTime::ParseExact(idok[0]->Replace("AM","DE.")->Replace("PM","DU."), idoformat2, CIproviderHU);
 							tan->veg = DateTime::ParseExact(idok[1]->Replace("AM", "DE.")->Replace("PM", "DU."), idoformat2, CIproviderHU);
 						}
-						else {	// Ha az idõk magyar formátumúak
+						else {	// Ha az idï¿½k magyar formï¿½tumï¿½ak
 							tan->kezdes = DateTime::ParseExact(idok[0], idoformat1, CIproviderHU);
-							tan->veg = DateTime::ParseExact(idok[1], idoformat1, CIproviderHU);							
+							tan->veg = DateTime::ParseExact(idok[1], idoformat1, CIproviderHU);
 						}
-						tan->nap = (int)tan->kezdes->DayOfWeek;	// hét napja számként, 1 = hétfõ
-						
-						// EGYÉB INFÓK
-						// név (tárgykód) - kurzuskód - (Változó..) Minden hét (oktató) (terem)
+						tan->nap = (int)tan->kezdes->DayOfWeek;	// hï¿½t napja szï¿½mkï¿½nt, 1 = hï¿½tfï¿½
+
+						// EGYï¿½B INFï¿½K
+						// nï¿½v (tï¿½rgykï¿½d) - kurzuskï¿½d - (Vï¿½ltozï¿½..) Minden hï¿½t (oktatï¿½) (terem)
 						// fontos indexek:
 						poz_targykodvege = cellak[2]->IndexOf(") - ");
 						poz_targyvege = cellak[2]->LastIndexOf("(", poz_targykodvege, poz_targykodvege-1);
 						poz_kurzusvege = cellak[2]->IndexOf(" - ", poz_targykodvege + 4, 20);
-						poz_oktatoeleje = cellak[2]->IndexOf("hét (", poz_kurzusvege) + 5;
+						poz_oktatoeleje = cellak[2]->IndexOf("hï¿½t (", poz_kurzusvege) + 5;
 						poz_oktatovege = cellak[2]->IndexOf(") ", poz_oktatoeleje);
-						// indexek szerint darabolás
+						// indexek szerint darabolï¿½s
 						tan->nev = cellak[2]->Substring(0, poz_targyvege)->Trim(' ');
 						tan->targykod = cellak[2]->Substring(poz_targyvege + 1, poz_targykodvege - poz_targyvege - 1);
 						tan->kurzuskod = cellak[2]->Substring(poz_targykodvege + 4, poz_kurzusvege - poz_targykodvege - 4);
 						try { tan->oktato = cellak[2]->Substring(poz_oktatoeleje, poz_oktatovege - poz_oktatoeleje)->Replace(";",", "); }
-						catch (...) { tan->oktato = ""; }	// oktató nem mindig van
-						// Néha az oktató helyére a terem kerül (a Neptuntáblázat miatt), de ez nem zavaró
+						catch (...) { tan->oktato = ""; }	// oktatï¿½ nem mindig van
+						// Nï¿½ha az oktatï¿½ helyï¿½re a terem kerï¿½l (a Neptuntï¿½blï¿½zat miatt), de ez nem zavarï¿½
 
-						// Ha a tárgy nevében van vesszõ, azt a csv formátum miatt kommentelni kell
+						// Ha a tï¿½rgy nevï¿½ben van vesszï¿½, azt a csv formï¿½tum miatt kommentelni kell
 						if (tan->nev->Contains(",")) tan->nev = "\"" + tan->nev + "\"";
 
-						//System::Diagnostics::Debug::WriteLine("ora kész");
+						//System::Diagnostics::Debug::WriteLine("ora kï¿½sz");
 						oralista->Add(tan);
 					}
-				} // fájl vége
+				} // fï¿½jl vï¿½ge
 				sreader->Close();
 				return oralista;
 		}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Páratlan heti forrásfájl gomb, beállítja a fájl elérési útját
+		// Pï¿½ratlan heti forrï¿½sfï¿½jl gomb, beï¿½llï¿½tja a fï¿½jl elï¿½rï¿½si ï¿½tjï¿½t
 		System::Windows::Forms::DialogResult dr;
 		openFileDialog1->FileName = "";
-		openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
+		openFileDialog1->Filter = "Szï¿½vegfï¿½jlok (*.txt)|*.txt|Minden fï¿½jl (*.*)|*.*";
 		openFileDialog1->FilterIndex = 1;
 		dr = openFileDialog1->ShowDialog();
-		if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fájl kiválasztva
+		if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fï¿½jl kivï¿½lasztva
 			paratlanhet_filename = openFileDialog1->FileName;
 			label4->Text = System::IO::Path::GetFileName(paratlanhet_filename);
 		}
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Páros heti forrásfájl gomb, beállítja a fájl elérési útját
+		// Pï¿½ros heti forrï¿½sfï¿½jl gomb, beï¿½llï¿½tja a fï¿½jl elï¿½rï¿½si ï¿½tjï¿½t
 		System::Windows::Forms::DialogResult dr;
 		openFileDialog1->FileName = "";
-		openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
+		openFileDialog1->Filter = "Szï¿½vegfï¿½jlok (*.txt)|*.txt|Minden fï¿½jl (*.*)|*.*";
 		openFileDialog1->FilterIndex = 1;
 		dr = openFileDialog1->ShowDialog();
-		if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fájl kiválasztva
+		if (dr == System::Windows::Forms::DialogResult::OK) { // Ha fï¿½jl kivï¿½lasztva
 			paroshet_filename = openFileDialog1->FileName;
 			label5->Text = System::IO::Path::GetFileName(paroshet_filename);
 		}
@@ -383,42 +383,42 @@ namespace WindowsForm {
 	}
 
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Az idõszakok fájlt olvassa be, beállítja a hozzá tartozó változókat
+		// Az idï¿½szakok fï¿½jlt olvassa be, beï¿½llï¿½tja a hozzï¿½ tartozï¿½ vï¿½ltozï¿½kat
 
-		// A fájl key = value formátumú, a komment sorok #-vel jelöltek.
-		// Újabb értékekkel gond nélkül bõvíthetõ.
+		// A fï¿½jl key = value formï¿½tumï¿½, a komment sorok #-vel jelï¿½ltek.
+		// ï¿½jabb ï¿½rtï¿½kekkel gond nï¿½lkï¿½l bï¿½vï¿½thetï¿½.
 
 		StreamReader ^ sreader;
 		String ^ key, ^ value, ^ sor;
-		
-		// key-value párok tárolására
+
+		// key-value pï¿½rok tï¿½rolï¿½sï¿½ra
 		Dictionary<String^, String^> ^ idoszakokDict = gcnew Dictionary<String^, String^>();
-		
-		// Dialógus init
+
+		// Dialï¿½gus init
 		System::Windows::Forms::DialogResult dr;
 		openFileDialog1->FileName = "";
-		openFileDialog1->Filter = "Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*";
+		openFileDialog1->Filter = "Szï¿½vegfï¿½jlok (*.txt)|*.txt|Minden fï¿½jl (*.*)|*.*";
 		openFileDialog1->FilterIndex = 1;
 		dr = openFileDialog1->ShowDialog();
-		if (dr == System::Windows::Forms::DialogResult::OK) { // ha megvan a fájl
-			// BEOLVASÁS
+		if (dr == System::Windows::Forms::DialogResult::OK) { // ha megvan a fï¿½jl
+			// BEOLVASï¿½S
 			sreader = gcnew StreamReader(openFileDialog1->FileName);
-			label7->ForeColor = System::Drawing::SystemColors::GrayText; // hiba esetén piros volt
+			label7->ForeColor = System::Drawing::SystemColors::GrayText; // hiba esetï¿½n piros volt
 			label7->Text = System::IO::Path::GetFileName(openFileDialog1->FileName);
 			while (!sreader->EndOfStream) {
 				sor = sreader->ReadLine();
-				if (!sor->StartsWith("#") && sor != "") { // komment és üres sorokat nem olvas
+				if (!sor->StartsWith("#") && sor != "") { // komment ï¿½s ï¿½res sorokat nem olvas
 					key = sor->Split('=')[0]->Trim(' ');
 					value = sor->Split('=')[1]->Trim(' ');
 					idoszakokDict->Add(key, value);
 				}
-			} // fájl vége
+			} // fï¿½jl vï¿½ge
 			sreader->Close();
-			// FELDOLGOZÁS
+			// FELDOLGOZï¿½S
 			try {
 				elsonap = DateTime::ParseExact(idoszakokDict["elso_nap"], "yyyy-MM-dd", CIproviderHU);
 				szunethete = System::Convert::ToInt32(idoszakokDict["szunet_hete"]);
-				// szünetek
+				// szï¿½netek
 				array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti_napok"]->Split(',');
 				for (int i = 0; i < szunetekStrArr->Length; i++)
 					szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIproviderHU));
@@ -438,91 +438,88 @@ namespace WindowsForm {
 				idoszakok_megvan = false;
 			}
 		}
-		else { // Dialógusban MÉGSE
+		else { // Dialï¿½gusban Mï¿½GSE
 			label7->Text = "";
 			idoszakok_megvan = false;
 		}
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Páratlan heti forrásfájl beolvasása
+		// Pï¿½ratlan heti forrï¿½sfï¿½jl beolvasï¿½sa
 		if (label4->Text != "") paratlanhet = parseSourceFile(paratlanhet_filename);
 		if (paratlanhet != nullptr)	paratlanforras_megvan = true;
 		else {
 			paratlanforras_megvan = false;
-			label3->Text = "Nem találom a páratlan heti forrást.";
+			label3->Text = "Nem talï¿½lom a pï¿½ratlan heti forrï¿½st.";
 		}
-		// Páros heti forrásfájl beolvasása
+		// Pï¿½ros heti forrï¿½sfï¿½jl beolvasï¿½sa
 		if (label5->Text != "") paroshet = parseSourceFile(paroshet_filename);
 		if (paroshet != nullptr) parosforras_megvan = true;
 		else {
 			parosforras_megvan = false;
-			label3->Text = "Nem találom a páros heti forrást.";
+			label3->Text = "Nem talï¿½lom a pï¿½ros heti forrï¿½st.";
 		}
-		if (!(parosforras_megvan || paratlanforras_megvan)) { // mindkettõ hiányzik
-			label3->Text = "Nem találom a forrásfájlokat.";
+		if (!(parosforras_megvan || paratlanforras_megvan)) { // mindkettï¿½ hiï¿½nyzik
+			label3->Text = "Nem talï¿½lom a forrï¿½sfï¿½jlokat.";
 		}
-		
+
 		// CSV Export
 		StreamWriter ^ swriter;
-		List<Tanora^> ^ akthet; // a paroshet vagy a paratlanhet listára mutat
+		List<Tanora^> ^ akthet; // a paroshet vagy a paratlanhet listï¿½ra mutat
 		Tanora ^ tan;
-		int hetOffset = 0; // a tavaszi szünethez kell
+		int hetOffset = 0; // a tavaszi szï¿½nethez kell
 
 		// Dialog init
-		saveFileDialog1->Filter = "CSV fájlok (*.csv)|*.csv";
+		saveFileDialog1->Filter = "CSV fï¿½jlok (*.csv)|*.csv";
 		saveFileDialog1->RestoreDirectory = true;
 		System::Windows::Forms::DialogResult dr;
 		if (idoszakok_megvan && paratlanforras_megvan && parosforras_megvan) {
 			dr = saveFileDialog1->ShowDialog();
-			if (dr == System::Windows::Forms::DialogResult::OK) { // fájl kiválasztva
+			if (dr == System::Windows::Forms::DialogResult::OK) { // fï¿½jl kivï¿½lasztva
 				swriter = gcnew StreamWriter(saveFileDialog1->FileName);
-				swriter->AutoFlush = true; // Enélkül random megáll az írással
+				swriter->AutoFlush = true;
+				// fejlï¿½c
 				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location, All Day Event");
 				for (int het = 1; het <= 14; het++) {
-					if (het % 2 == 1) // páros/páratlan hét
-						akthet = paratlanhet;
-					else
-						akthet = paroshet;
-					if (het == szunethete)
-						hetOffset = 1;
-
-					// hét sorszáma hétfõi egész napos eseményként
+					if (het % 2 == 1) akthet = paroshet;
+					else akthet = paratlanhet;
+					if (het == szunethete) hetOffset = 1;
+					// hï¿½t sorszï¿½ma hï¿½tfï¿½i egï¿½sz napos esemï¿½nykï¿½nt
 					if (checkBox1->Checked == true) {
-						String ^nev = Convert::ToString(het) + ". hét";
+						String ^nev = Convert::ToString(het) + ". hï¿½t";
 						DateTime ^datum = elsonap->AddDays((het - 1 + hetOffset) * 7);
 						String ^ sor = String::Join(",",
-							nev, datum->ToString("dd.MM.yyyy"), "8:00",
+							nev, datum->ToString("dd.MM.yyyy"),	"8:00",
 							datum->ToString("dd.MM.yyyy"), "8:01", "", "", "True");
 						swriter->WriteLine(sor);
 					}
-
-					// tanórák írása
+					// Hï¿½t ï¿½rï¿½inak elkï¿½szï¿½tï¿½se
 					for (int i = 0; i < akthet->Count; i++) {
-						tan = akthet[i]; // Tanóra ^ tan
+						tan = akthet[i]; // Tanï¿½ra ^ tan
 						DateTime ^ datum = elsonap->AddDays((het-1+hetOffset) * 7 + tan->nap - 1);
-						if (szunetek->Contains(*datum)) { // Ha az adott nap szünet
-							for (int i = 0; i < szombatok->Count; i++) { // Ha van szombati pótlása, rakja át az órát oda
+						if (szunetek->Contains(*datum)) { // Ha az adott nap szï¿½net
+							for (int i = 0; i < szombatok->Count; i++) { // Ha van szombati pï¿½tlï¿½sa, rakja ï¿½t az ï¿½rï¿½t oda
 								if (datum->Equals(szombatok[i]->helyett)) {
 									datum = szombatok[i]->datum;
 									break;
 								}
 							}
 						}
-						// írás
+						// ï¿½rï¿½s
 						String ^ sor = String::Join(",",
 							tan->nev,
 							datum->ToString("dd.MM.yyyy"),
 							tan->kezdes->ToString("H:mm"),
 							datum->ToString("dd.MM.yyyy"),
 							tan->veg->ToString("H:mm"),
-							"\"" + tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato + "\"", 
+							"\"" + tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato + "\"",
 							tan->terem,
 							"False");
-						if (!szunetek->Contains(*datum)) // Ha a nap nem szünet, akkor írja
+						if (!szunetek->Contains(*datum)) // Ha a nap nem szï¿½net, akkor ï¿½rja
 							swriter->WriteLine(sor);
-					} // óra (rekord) kész
+					} // ï¿½ra (rekord) kï¿½sz
 				}
-				label3->Text = "Az órarend elkészült. Bezárhatod a programot.";
+				label3->Text = "Az ï¿½rarend elkï¿½szï¿½lt. Bezï¿½rhatod a programot.";
+				swriter->Close();
 			}
 		}
 	}
