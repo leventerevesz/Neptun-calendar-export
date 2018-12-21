@@ -52,6 +52,7 @@ namespace WindowsForm {
 	private: System::Windows::Forms::Label^  label6;
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::CheckBox^  checkBox1;
 
 	protected:
 
@@ -81,10 +82,12 @@ namespace WindowsForm {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button1->Location = System::Drawing::Point(398, 30);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
@@ -95,6 +98,7 @@ namespace WindowsForm {
 			// 
 			// button2
 			// 
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button2->Location = System::Drawing::Point(398, 62);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
@@ -106,6 +110,7 @@ namespace WindowsForm {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label1->Location = System::Drawing::Point(12, 33);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(129, 17);
@@ -115,6 +120,7 @@ namespace WindowsForm {
 			// label2
 			// 
 			this->label2->AutoSize = true;
+			this->label2->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label2->Location = System::Drawing::Point(12, 65);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(113, 17);
@@ -123,7 +129,8 @@ namespace WindowsForm {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(398, 146);
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->button3->Location = System::Drawing::Point(398, 162);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 4;
@@ -138,8 +145,9 @@ namespace WindowsForm {
 			// label3
 			// 
 			this->label3->AutoSize = true;
+			this->label3->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label3->ForeColor = System::Drawing::SystemColors::Highlight;
-			this->label3->Location = System::Drawing::Point(12, 149);
+			this->label3->Location = System::Drawing::Point(12, 165);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(31, 17);
 			this->label3->TabIndex = 5;
@@ -148,6 +156,7 @@ namespace WindowsForm {
 			// label4
 			// 
 			this->label4->AutoSize = true;
+			this->label4->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label4->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->label4->Location = System::Drawing::Point(165, 33);
 			this->label4->Name = L"label4";
@@ -158,6 +167,7 @@ namespace WindowsForm {
 			// label5
 			// 
 			this->label5->AutoSize = true;
+			this->label5->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label5->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->label5->Location = System::Drawing::Point(165, 65);
 			this->label5->Name = L"label5";
@@ -168,6 +178,7 @@ namespace WindowsForm {
 			// label6
 			// 
 			this->label6->AutoSize = true;
+			this->label6->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label6->Location = System::Drawing::Point(12, 96);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(114, 17);
@@ -177,6 +188,7 @@ namespace WindowsForm {
 			// label7
 			// 
 			this->label7->AutoSize = true;
+			this->label7->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->label7->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->label7->Location = System::Drawing::Point(165, 96);
 			this->label7->Name = L"label7";
@@ -186,6 +198,7 @@ namespace WindowsForm {
 			// 
 			// button4
 			// 
+			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button4->Location = System::Drawing::Point(398, 93);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
@@ -194,11 +207,25 @@ namespace WindowsForm {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
 			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Checked = true;
+			this->checkBox1->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkBox1->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->checkBox1->Location = System::Drawing::Point(12, 126);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(259, 22);
+			this->checkBox1->TabIndex = 11;
+			this->checkBox1->Text = L"Mutassa a hét számát eseményként";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(487, 194);
+			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
@@ -450,7 +477,7 @@ namespace WindowsForm {
 			if (dr == System::Windows::Forms::DialogResult::OK) { // fájl kiválasztva
 				swriter = gcnew StreamWriter(saveFileDialog1->FileName);
 				swriter->AutoFlush = true; // Enélkül random megáll az írással
-				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location"); // header
+				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location, All Day Event");
 				for (int het = 1; het <= 14; het++) {
 					if (het % 2 == 1) // páros/páratlan hét
 						akthet = paratlanhet;
@@ -458,6 +485,18 @@ namespace WindowsForm {
 						akthet = paroshet;
 					if (het == szunethete)
 						hetOffset = 1;
+
+					// hét sorszáma hétfõi egész napos eseményként
+					if (checkBox1->Checked == true) {
+						String ^nev = Convert::ToString(het) + ". hét";
+						DateTime ^datum = elsonap->AddDays((het - 1 + hetOffset) * 7);
+						String ^ sor = String::Join(",",
+							nev, datum->ToString("dd.MM.yyyy"), "8:00",
+							datum->ToString("dd.MM.yyyy"), "8:01", "", "", "True");
+						swriter->WriteLine(sor);
+					}
+
+					// tanórák írása
 					for (int i = 0; i < akthet->Count; i++) {
 						tan = akthet[i]; // Tanóra ^ tan
 						DateTime ^ datum = elsonap->AddDays((het-1+hetOffset) * 7 + tan->nap - 1);
@@ -477,12 +516,13 @@ namespace WindowsForm {
 							datum->ToString("dd.MM.yyyy"),
 							tan->veg->ToString("H:mm"),
 							"\"" + tan->kurzuskod + " | " + tan->targykod + " | " + tan->oktato + "\"", 
-							tan->terem);
+							tan->terem,
+							"False");
 						if (!szunetek->Contains(*datum)) // Ha a nap nem szünet, akkor írja
 							swriter->WriteLine(sor);
 					} // óra (rekord) kész
 				}
-				label3->Text = "Kész.";
+				label3->Text = "Az órarend elkészült. Bezárhatod a programot.";
 			}
 		}
 	}

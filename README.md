@@ -28,7 +28,7 @@ Időigény: nagyjából 3 perc + a szerkesztés ideje
 
 Követelmények
 -------------
-- Windows 10
+- Windows 10 vagy Windows 7 + .NET 4.6.1
 - Chrome / Firefox / Opera / Safari
 
 Letöltés
