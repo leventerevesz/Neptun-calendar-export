@@ -480,8 +480,8 @@ namespace WindowsForm {
 				// fejléc
 				swriter->WriteLine("Subject,Start Date,Start Time,End Date,End Time,Description,Location, All Day Event");
 				for (int het = 1; het <= 14; het++) {
-					if (het % 2 == 1) akthet = paroshet;
-					else akthet = paratlanhet;
+					if (het % 2 == 0) { akthet = paroshet; }
+					else { akthet = paratlanhet; }
 					if (het == szunethete) hetOffset = 1;
 					// hét sorszáma hétfõi egész napos eseményként
 					if (checkBox1->Checked == true) {
