@@ -4,7 +4,7 @@ Ez a program a Neptun órarend felületéről egyszerűen kimásolható adatokb�
 
 Motiváció
 ---------
-A Neptun rendszer órarend exportáló funkciója nem mindig működik, valamint az órák adatai a valóságban gyakran különböznek a Neptunban szereplőktől.
+A Neptun rendszer órarend exportáló funkciója nem mindig működik, sok szemetet helyez az órarendedbe, rosszul tördeli az információt, valamint az órák adatai a valóságban gyakran különböznek a Neptunban szereplőktől - elég csak a munkaszüneti napokra gondolni.
 
 Célszerű a Google Calendarba importálni az órarendet, mert
 - ingyenes
@@ -19,16 +19,17 @@ Mit tud a program
 - Szombati munkanapok
 - Tavaszi szünet
 
-A webcalhoz képest ez az órarend
+A Neptun webcalhoz képest ez az órarend
 - Szerkeszthető: órák törölhetők, hozzáadhatók, módosíthatók
 - Tartalmazza a szüneteket
 - Tartalmazza a szombati munkanapokat
+- Az események adatait sokkal szebben tördeli
 
 Időigény: nagyjából 3 perc + a szerkesztés ideje
 
 Követelmények
 -------------
-- Windows 10 vagy Windows 7 + .NET 4.6.1
+- Windows 10, vagy Windows 7 + .NET 4.6.1
 - Chrome / Firefox / Opera / Safari
 
 Letöltés
@@ -59,23 +60,23 @@ Jegyzettömb használatakor mentésnél a kódolást UTF-8-ra állítsd!
 #### Google import
 1. Nyisd meg a https://calendar.google.com címen
 2. Beállítások > Naptár felvétele > Új naptár (pl. *4. félév*)
-3. Importálás és exportálás > Importálás > az **új naptárba**.
+3. Importálás és exportálás > Importálás > az **új naptárba**, és töltsd föl az elkészült csv fájlt.
 
 Extrák
 ------
 #### Órák alatti némítás
 Néhány gyártó (pl. Samsung) naptár alkalmazása tudja ezt a funkciót.  
 Ha a te eszközöd gyárilag nem képes erre, a [Calendar Mute](https://play.google.com/store/apps/details?id=com.PKH.calendarmute&hl=en_US)
- app pont erre való. Ingyenes és reklámmentes.
+ app pont erre való. Ingyenes és reklámmentes, akkut nem fogyaszt.
 
 #### Óra sablon a forrásfájlba
-*kezdés_idő* - *vég_idő*\<t>Óra\<t>*Tárgy* (*tárgykód*) - *kurzuskód* - Minden hét (*oktatók*)\<t>*terem*
+*kezdés_idő* - *vég_idő*<\t>Óra<\t>*Tárgy* (*tárgykód*) - *kurzuskód* - Minden hét (*oktatók*)<\t>*terem*
 
-- A \<t> tabulátort jelent.
+- A <\t> tabulátort jelent.
 - A *dőlt betűs* szavak helyettesítendők
 - Az összes többi karakternek (szóközöket is beleértve) stimmelnie kell
 - Az időformátum YYYY.MM.DD h:mm (Nap)  
-  - példa: 2018.09.03 8:15 (Hétfő)  
+  - példa: 2018.09.03 8:05 (Hétfő)  
   - A hónap, nap és perc mindenképp kétjegyű legyen, de az óra ne.
 
 Névjegy
