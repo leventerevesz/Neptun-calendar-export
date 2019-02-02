@@ -414,21 +414,29 @@ namespace WindowsForm {
 				}
 			} // fájl vége
 			sreader->Close();
+			System::Diagnostics::Debug::WriteLine("munkaszuneti_napok :");
+			System::Diagnostics::Debug::WriteLine(System::Convert::ToString(idoszakokDict["szombati_munkanapok"]->Length));
+			System::Diagnostics::Debug::WriteLine("["+ idoszakokDict["szombati_munkanapok"] + "]");
 			// FELDOLGOZÁS
 			try {
 				elsonap = DateTime::ParseExact(idoszakokDict["elso_nap"], "yyyy-MM-dd", CIproviderHU);
 				szunethete = System::Convert::ToInt32(idoszakokDict["szunet_hete"]);
 				// szünetek
-				array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti_napok"]->Split(',');
-				for (int i = 0; i < szunetekStrArr->Length; i++)
-					szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIproviderHU));
+				if (idoszakokDict["munkaszuneti_napok"] != "") {
+					array<String^> ^ szunetekStrArr = idoszakokDict["munkaszuneti_napok"]->Split(',');
+					for (int i = 0; i < szunetekStrArr->Length; i++) {
+						szunetek->Add(DateTime::ParseExact(szunetekStrArr[i], "yyyy-MM-dd", CIproviderHU));
+					}
+				}
 				// szombatok
-				array<String^> ^ szombatokStrArr = idoszakokDict["szombati_munkanapok"]->Split(',');
-				for (int i = 0; i < szombatokStrArr->Length; i++) {
-					array<String^> ^ dpArr = szombatokStrArr[i]->Split('/');
-					DatePair ^ dp = gcnew DatePair(DateTime::ParseExact(dpArr[0], "yyyy-MM-dd", CIproviderHU),
-						DateTime::ParseExact(dpArr[1], "yyyy-MM-dd", CIproviderHU));
-					szombatok->Add(dp);
+				if (idoszakokDict["szombati_munkanapok"] != "") {
+					array<String^> ^ szombatokStrArr = idoszakokDict["szombati_munkanapok"]->Split(',');
+					for (int i = 0; i < szombatokStrArr->Length; i++) {
+						array<String^> ^ dpArr = szombatokStrArr[i]->Split('/');
+						DatePair ^ dp = gcnew DatePair(DateTime::ParseExact(dpArr[0], "yyyy-MM-dd", CIproviderHU),
+							DateTime::ParseExact(dpArr[1], "yyyy-MM-dd", CIproviderHU));
+						szombatok->Add(dp);
+					}
 				}
 				idoszakok_megvan = true;
 			}
