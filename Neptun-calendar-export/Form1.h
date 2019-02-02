@@ -283,14 +283,14 @@ namespace WindowsForm {
 		CultureInfo ^ CIproviderHU = gcnew CultureInfo("hu-HU");
 
 		List<Tanora^> ^parseSourceFile(String ^filename) {
-			// A forrásfájlból csinál egy List<Tanora^> listát. Egy Labelbe kiírja mit válaszottunk.
+			// A forrásfájlból csinál egy List<Tanora^> listát.
 			//
 			//	filename: a kiválasztott fájl teljes elérési útja
 
 			// A Neptun kétféle idõformátum közt váltogat
 			String ^ idoformat1 = "yyyy.MM.dd. H:mm (dddd)";
 			String ^ idoformat2 = "M/d/yyyy h:mm tt (dddd)";
-			// Az oralista lesz a visszaadott érték, az egy hétnyi órarend
+			// Az oralista lesz a visszaadott érték, egy hétnyi órarend
 			List<Tanora^> ^ oralista = gcnew List<Tanora^>();
 			// változók a daraboláshoz
 			array<String^> ^ cellak, ^ idok, ^ infok;
@@ -303,7 +303,13 @@ namespace WindowsForm {
 			sreader = gcnew StreamReader(filename);
 			while (!sreader->EndOfStream) {
 				sor = sreader->ReadLine();
-				if (sor->Length > 0) {
+				if (sor->Length == 0) {	// Üres sort átugorjuk
+					continue;
+				}
+				if (System::Char::IsDigit(sor[0]) == false) { // Az érvényes sorok számmal kezdõdnek
+					continue;
+				}
+				if (sor->Length > 0) { 
 					Tanora ^ tan = gcnew Tanora();	// ide gyûjtünk adatokat
 					cellak = sor->Split('\t');	// négy cella: idõk, "óra", egyéb infók, terem
 
