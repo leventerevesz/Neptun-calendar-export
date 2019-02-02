@@ -375,7 +375,7 @@ namespace WindowsForm {
 		}
 	}
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
-		this->Text = "Neptun Calendar Export v1.0";
+		this->Text = "Neptun Calendar Export v1.1";
 		label3->Text = "";
 		label4->Text = "";
 		label5->Text = "";
